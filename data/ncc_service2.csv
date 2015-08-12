@@ -1,0 +1,313 @@
+service,date_calculated,YYYY,total_spend
+Children's Services,2011-01-01,2011,12154123.67
+Children's Services,2011-02-01,2011,7656782.73
+Children's Services,2011-03-01,2011,9416238.97
+Children's Services,2011-04-01,2011,12385548.41
+Children's Services,2011-05-01,2011,10371598.09
+Children's Services,2011-06-01,2011,10783824.68
+Children's Services,2011-07-01,2011,11231808.86
+Children's Services,2011-08-01,2011,10586258
+Children's Services,2011-09-01,2011,13470212.4
+Children's Services,2011-10-01,2011,11263861.31
+Children's Services,2011-11-01,2011,11498738.72
+Children's Services,2011-12-01,2011,11251247.18
+Children's Services,2012-01-01,2012,8437702.48
+Children's Services,2012-02-01,2012,7592009.14
+Children's Services,2012-03-01,2012,8303079.92
+Children's Services,2012-04-01,2012,8494566.8
+Children's Services,2012-05-01,2012,9324031.63
+Children's Services,2012-06-01,2012,6951238.89
+Children's Services,2012-07-01,2012,7652327.08
+Children's Services,2012-08-01,2012,9593333.75
+Children's Services,2012-09-01,2012,10007147.19
+Children's Services,2012-10-01,2012,9627435.07
+Children's Services,2012-11-01,2012,9174458.98
+Children's Services,2012-12-01,2012,10925168.1
+Children's Services,2013-01-01,2013,7695059.4
+Children's Services,2013-02-01,2013,7836753.77
+Children's Services,2013-03-01,2013,8912253.49000001
+Children's Services,2013-04-01,2013,10441900.11
+Children's Services,2013-05-01,2013,5828004.85
+Children's Services,2013-06-01,2013,7574514.94
+Children's Services,2013-07-01,2013,11009707.95
+Children's Services,2013-08-01,2013,9124944.5
+Children's Services,2013-09-01,2013,6992138.34
+Children's Services,2013-10-01,2013,9707841.53
+Children's Services,2013-11-01,2013,8107041.33
+Children's Services,2013-12-01,2013,6828638.45
+Children's Services,2014-01-01,2014,7499964.46
+Children's Services,2014-02-01,2014,5119745.91
+Children's Services,2014-03-01,2014,5354458.36
+Children's Services,2014-04-01,2014,7856229.82
+Children's Services,2014-05-01,2014,4815281.76
+Children's Services,2014-06-01,2014,5719844.98
+Children's Services,2014-07-01,2014,6433109.49
+Children's Services,2014-08-01,2014,6931537.14
+Children's Services,2014-10-01,2014,9284549.09
+Children's Services,2014-11-01,2014,8135071.19
+Children's Services,2014-12-01,2014,8950750.62
+Children's Services,2014-11-01,2014,2616.66
+Children's Services,2014-12-01,2014,10629.85
+Community Services,2011-01-01,2011,12090038.25
+Community Services,2011-02-01,2011,13600766.9
+Community Services,2011-03-01,2011,11896079.08
+Community Services,2011-04-01,2011,18227550.1
+Community Services,2011-05-01,2011,13477021.87
+Community Services,2011-06-01,2011,18258448.64
+Community Services,2011-07-01,2011,17577299.96
+Community Services,2011-08-01,2011,17342611.59
+Community Services,2011-09-01,2011,16558309.02
+Community Services,2011-10-01,2011,16377745.06
+Community Services,2011-11-01,2011,15493948.02
+Community Services,2011-12-01,2011,25730532.98
+Community Services,2012-01-01,2012,13098542.98
+Community Services,2012-02-01,2012,15721682.73
+Community Services,2012-03-01,2012,13142630.18
+Community Services,2012-04-01,2012,12989984.32
+Community Services,2012-05-01,2012,11483566.98
+Community Services,2012-06-01,2012,14568026.48
+Community Services,2012-07-01,2012,14921588.34
+Community Services,2012-08-01,2012,13813447.03
+Community Services,2012-09-01,2012,12797727.67
+Community Services,2012-10-01,2012,11688805.9
+Community Services,2012-11-01,2012,20201603.96
+Community Services,2012-12-01,2012,11782019.52
+Community Services,2013-01-01,2013,12081238.48
+Community Services,2013-02-01,2013,12549477.75
+Community Services,2013-03-01,2013,11432169.22
+Community Services,2013-04-01,2013,13377804.83
+Community Services,2013-05-01,2013,13235649.78
+Community Services,2013-06-01,2013,12956722.84
+Community Services,2013-07-01,2013,13825259.01
+Community Services,2013-08-01,2013,13200267.07
+Community Services,2013-09-01,2013,12743154.16
+Community Services,2013-10-01,2013,22928864.69
+Community Services,2013-11-01,2013,13822189.39
+Community Services,2013-12-01,2013,14533693.98
+Community Services,2014-01-01,2014,14785906.9
+Community Services,2014-02-01,2014,15063018.89
+Community Services,2014-03-01,2014,16304931.16
+Community Services,2014-04-01,2014,16155246.15
+Community Services,2014-05-01,2014,14824395.44
+Community Services,2014-06-01,2014,16117828.16
+Community Services,2014-07-01,2014,15849225.81
+Community Services,2014-08-01,2014,15882837.8
+Community Services,2014-10-01,2014,31576279.26
+Community Services,2014-11-01,2014,18127379.07
+Community Services,2014-12-01,2014,17259755.76
+Environment Transport & Development,2014-12-01,2014,256.52
+Environment Transport & Development,2011-01-01,2011,9244804.03
+Environment Transport & Development,2011-02-01,2011,10895381.11
+Environment Transport & Development,2011-03-01,2011,14359243.69
+Environment Transport & Development,2011-04-01,2011,12617900.21
+Environment Transport & Development,2011-05-01,2011,15692555.32
+Environment Transport & Development,2011-06-01,2011,14065454.16
+Environment Transport & Development,2011-07-01,2011,9466294.47
+Environment Transport & Development,2011-08-01,2011,14604318.8
+Environment Transport & Development,2011-09-01,2011,12050174.76
+Environment Transport & Development,2011-10-01,2011,11216721.82
+Environment Transport & Development,2011-11-01,2011,10386665.92
+Environment Transport & Development,2011-12-01,2011,11179081.18
+Environment Transport & Development,2012-01-01,2012,9059090.44
+Environment Transport & Development,2012-02-01,2012,8697118.34
+Environment Transport & Development,2012-03-01,2012,13387351.59
+Environment Transport & Development,2012-04-01,2012,9602464.47
+Environment Transport & Development,2012-05-01,2012,11653450.38
+Environment Transport & Development,2012-06-01,2012,10344276.49
+Environment Transport & Development,2012-07-01,2012,12685478.24
+Environment Transport & Development,2012-08-01,2012,12947314.43
+Environment Transport & Development,2012-09-01,2012,15607752.96
+Environment Transport & Development,2012-10-01,2012,8004328.58
+Environment Transport & Development,2012-11-01,2012,11466758.3
+Environment Transport & Development,2012-12-01,2012,13561629.04
+Environment Transport & Development,2013-01-01,2013,14635346.36
+Environment Transport & Development,2013-02-01,2013,10480026.18
+Environment Transport & Development,2013-03-01,2013,12612269.69
+Environment Transport & Development,2013-04-01,2013,10152329.97
+Environment Transport & Development,2013-05-01,2013,15218307.52
+Environment Transport & Development,2013-06-01,2013,13575440.51
+Environment Transport & Development,2013-07-01,2013,16194192.44
+Environment Transport & Development,2013-08-01,2013,10427549.09
+Environment Transport & Development,2013-09-01,2013,9718966.39999999
+Environment Transport & Development,2013-10-01,2013,17433301.53
+Environment Transport & Development,2013-11-01,2013,10794443.63
+Environment Transport & Development,2013-12-01,2013,9742402.88
+Environment Transport & Development,2014-01-01,2014,8337347.37
+Environment Transport & Development,2014-02-01,2014,8765740.76
+Environment Transport & Development,2014-03-01,2014,10209135.09
+Environment Transport & Development,2014-04-01,2014,15680151.6
+Environment Transport & Development,2014-05-01,2014,11624566.2
+Environment Transport & Development,2014-06-01,2014,8805019.63
+Environment Transport & Development,2014-07-01,2014,15103623.21
+Environment Transport & Development,2014-08-01,2014,12440321.79
+Environment Transport & Development,2014-10-01,2014,11505967.13
+Environment Transport & Development,2014-11-01,2014,10619486.21
+Environment Transport & Development,2014-12-01,2014,14114791.06
+Environment Transport & Development,2014-12-01,2014,5481.41
+Fire & Rescue,2011-01-01,2011,449023.01
+Fire & Rescue,2011-02-01,2011,520141.53
+Fire & Rescue,2011-03-01,2011,694958
+Fire & Rescue,2011-04-01,2011,1203927.2
+Fire & Rescue,2011-05-01,2011,925718.69
+Fire & Rescue,2011-06-01,2011,550678.83
+Fire & Rescue,2011-07-01,2011,418135.7
+Fire & Rescue,2011-08-01,2011,389574.67
+Fire & Rescue,2011-09-01,2011,1223822.9
+Fire & Rescue,2011-10-01,2011,881561.89
+Fire & Rescue,2011-11-01,2011,952079.45
+Fire & Rescue,2011-12-01,2011,824095.82
+Fire & Rescue,2012-01-01,2012,1016675.36
+Fire & Rescue,2012-02-01,2012,351145.25
+Fire & Rescue,2012-03-01,2012,546339.63
+Fire & Rescue,2012-04-01,2012,327508.81
+Fire & Rescue,2012-05-01,2012,490300
+Fire & Rescue,2012-06-01,2012,416682.61
+Fire & Rescue,2012-07-01,2012,646445.41
+Fire & Rescue,2012-08-01,2012,532090.89
+Fire & Rescue,2012-09-01,2012,328962.45
+Fire & Rescue,2012-10-01,2012,396877.78
+Fire & Rescue,2012-11-01,2012,796184.11
+Fire & Rescue,2012-12-01,2012,134308.62
+Fire & Rescue,2013-01-01,2013,450996.42
+Fire & Rescue,2013-02-01,2013,281686.31
+Fire & Rescue,2013-03-01,2013,414024.25
+Fire & Rescue,2013-04-01,2013,523121.98
+Fire & Rescue,2013-05-01,2013,470698.66
+Fire & Rescue,2013-06-01,2013,294267.25
+Fire & Rescue,2013-07-01,2013,312945
+Fire & Rescue,2013-08-01,2013,234982.73
+Fire & Rescue,2013-09-01,2013,312031.92
+Fire & Rescue,2013-10-01,2013,370903.99
+Fire & Rescue,2013-11-01,2013,1146932.13
+Fire & Rescue,2013-12-01,2013,704424.45
+Fire & Rescue,2014-01-01,2014,621738.07
+Fire & Rescue,2014-02-01,2014,549431.27
+Fire & Rescue,2014-03-01,2014,1057174.5
+Fire & Rescue,2014-04-01,2014,660068.39
+Fire & Rescue,2014-05-01,2014,230259.07
+Fire & Rescue,2014-06-01,2014,333713.27
+Fire & Rescue,2014-07-01,2014,686789.21
+Fire & Rescue,2014-08-01,2014,548780.14
+Fire & Rescue,2014-10-01,2014,343568.5
+Fire & Rescue,2014-11-01,2014,452385.85
+Fire & Rescue,2014-12-01,2014,657493.44
+Other Hired & Contracted Services,2011-01-01,2011,1500
+Other inc Agency,2011-01-01,2011,114684.78
+Other inc Agency,2011-02-01,2011,39330
+Other inc Agency,2011-03-01,2011,2793
+Other inc Agency,2011-04-01,2011,20330
+Other inc Agency,2011-06-01,2011,5232.5
+Other inc Agency,2011-07-01,2011,18181.7
+Other inc Agency,2011-08-01,2011,1634.71
+Other inc Agency,2011-09-01,2011,620
+Other inc Agency,2011-10-01,2011,6115.45
+Other inc Agency,2011-11-01,2011,57.98
+Other inc Agency,2011-12-01,2011,10442.69
+Other inc Agency,2012-02-01,2012,30278.29
+Other inc Agency,2012-03-01,2012,93.3
+Other inc Agency,2012-04-01,2012,11560
+Other inc Agency,2012-05-01,2012,7618.54
+Other inc Agency,2012-06-01,2012,6694.07
+Other inc Agency,2012-07-01,2012,3134.43
+Other inc Agency,2012-08-01,2012,17325.31
+Other inc Agency,2012-09-01,2012,4628.36
+Other inc Agency,2012-10-01,2012,10961.7
+Other inc Agency,2012-11-01,2012,1140.75
+Other inc Agency,2012-12-01,2012,7017.7
+Other inc Agency,2013-01-01,2013,12687.44
+Other inc Agency,2013-02-01,2013,9819.84
+Other inc Agency,2013-03-01,2013,5933.84
+Other inc Agency,2013-04-01,2013,17276.21
+Other inc Agency,2013-05-01,2013,4573.96
+Other inc Agency,2013-06-01,2013,13255.7
+Other inc Agency,2013-07-01,2013,9458.51
+Other inc Agency,2013-08-01,2013,3330.07
+Other inc Agency,2013-09-01,2013,3474.98
+Other inc Agency,2013-10-01,2013,10300.63
+Other inc Agency,2013-11-01,2013,2911.37
+Other inc Agency,2013-12-01,2013,505.3
+Other inc Agency,2014-01-01,2014,8982.05
+Other inc Agency,2014-02-01,2014,1123.3
+Other inc Agency,2014-03-01,2014,7263.61
+Other inc Agency,2014-04-01,2014,35573.9
+Other inc Agency,2014-05-01,2014,10238.1
+Other inc Agency,2014-06-01,2014,7288.97
+Other inc Agency,2014-07-01,2014,13502.18
+Other inc Agency,2014-08-01,2014,14670.44
+Other inc Agency,2014-10-01,2014,26366.77
+Other inc Agency,2014-11-01,2014,18752.01
+Other inc Agency,2014-12-01,2014,378784.97
+Resources,2011-01-01,2011,2541.89
+Resources,2011-02-01,2011,1765986.44
+Resources,2011-03-01,2011,8560306.59
+Resources,2011-04-01,2011,6346911.41
+Resources,2011-05-01,2011,2950495.69
+Resources,2011-06-01,2011,7709599.13
+Resources,2011-07-01,2011,2471019.02
+Resources,2011-08-01,2011,1975164.66
+Resources,2011-09-01,2011,2439070.11
+Resources,2011-10-01,2011,9970292.64
+Resources,2011-11-01,2011,4704056.05
+Resources,2011-12-01,2011,7472806.42
+Resources,2012-01-01,2012,2841304.74
+Resources,2012-02-01,2012,2071367.11
+Resources,2012-03-01,2012,3101119.27
+Resources,2012-04-01,2012,3308091.62
+Resources,2012-05-01,2012,2155162.73
+Resources,2012-06-01,2012,1451608.08
+Resources,2012-07-01,2012,1743014.16
+Resources,2012-08-01,2012,2553333.08
+Resources,2012-09-01,2012,1887458.46
+Resources,2012-10-01,2012,1456502.01
+Resources,2012-11-01,2012,2446262.05
+Resources,2012-12-01,2012,1717603.75
+Resources,2013-01-01,2013,1904092.53
+Resources,2013-02-01,2013,877545.06
+Resources,2013-03-01,2013,3187455
+Resources,2013-04-01,2013,3493124.68
+Resources,2013-05-01,2013,2732662.75
+Resources,2013-06-01,2013,1451214.8
+Resources,2013-07-01,2013,2982286.61
+Resources,2013-08-01,2013,1198633.62
+Resources,2013-09-01,2013,2105509.46
+Resources,2013-10-01,2013,2831959.57
+Resources,2013-11-01,2013,1797120.23
+Resources,2013-12-01,2013,2321463.77
+Resources,2014-01-01,2014,4000578.45
+Resources,2014-02-01,2014,1081791.82
+Resources,2014-03-01,2014,4090297
+Resources,2014-04-01,2014,2692947.71
+Resources,2014-05-01,2014,6086339.08
+Resources,2014-06-01,2014,6525643.92
+Resources,2014-07-01,2014,3678422.67
+Resources,2014-08-01,2014,5006256.19
+Resources,2014-10-01,2014,8433455.21
+Resources,2014-11-01,2014,3481066.42
+Resources,2014-12-01,2014,15561611.78
+Resources - Pensions,2012-04-01,2012,193814.05
+Resources - Pensions,2012-05-01,2012,396374.4
+Resources - Pensions,2012-06-01,2012,356809.08
+Resources - Pensions,2012-07-01,2012,5153.34
+Resources - Pensions,2012-09-01,2012,154159.51
+Resources - Pensions,2012-10-01,2012,735488.07
+Resources - Pensions,2012-11-01,2012,447162.46
+Resources - Pensions,2012-12-01,2012,598821.39
+Resources - Pensions,2013-01-01,2013,137236.95
+Resources - Pensions,2013-02-01,2013,535391.17
+Resources - Pensions,2013-03-01,2013,633346.4
+Resources - Pensions,2013-05-01,2013,914904.92
+Resources - Pensions,2013-06-01,2013,326759.4
+Resources - Pensions,2013-08-01,2013,1380612.19
+Resources - Pensions,2013-09-01,2013,403259.13
+Resources - Pensions,2013-11-01,2013,1247387.53
+Resources - Pensions,2013-12-01,2013,227516.49
+Resources - Pensions,2014-01-01,2014,1060096.25
+Resources - Pensions,2014-02-01,2014,944874.08
+Resources - Pensions,2014-03-01,2014,233884.54
+Resources - Pensions,2014-04-01,2014,32232.7
+Resources - Pensions,2014-05-01,2014,939809.4
+Resources - Pensions,2014-06-01,2014,439417.58
+Resources - Pensions,2014-07-01,2014,376160.15
+Resources - Pensions,2014-08-01,2014,1061583.38
+Resources - Pensions,2014-10-01,2014,1021.65
+Resources - Pensions,2014-11-01,2014,5219.03
