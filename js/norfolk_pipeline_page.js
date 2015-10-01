@@ -1,14 +1,29 @@
 $(document).ready(function() {
 
-    window.dataTable = dc.dataTable("#dc-table-graph");
+    //window.dataTable = dc.dataTable("#dc-table-graph");
     window.detailChart = dc.barChart("#dc-detail-chart");
     window.frequencyChart = dc.barChart("#dc-frequency-chart");
 
     var cfc, cfcg;
 
-    d3.json('/js/norfolk.pipeline.data.json', function(payload) {
+    d3.json('https://dataclips.heroku.com/eaarihswareqaljzalbnhwvmibdc-norfolk_pipeline.json', function(jsondata) {
 
-        coercePayload(payload);
+        var payload = [];
+
+        for (var i = 0; i < jsondata['values'].length; i++) {
+            var row = jsondata['values'][i];
+            if (!row[2]) {
+                continue;
+            }
+            var d = {
+                'index': i,
+                'supplier': row[0],
+                'end_date': parseDate(row[2]),
+                'category': row[1],
+                'contract_value': 0+row[3]
+            };
+            payload.push(d);
+        }
 
         // store json results for later reference
         NFPipeline.payload = payload;
@@ -41,33 +56,33 @@ $(document).ready(function() {
           d3.select('span')
         }
 
-        dataTable.width(chartWidth).height(800)
-            .dimension(cfd)
-            .group(function(d) {
-                return "Contracts Ending Soon"
-            })
-            .columns([
-                function(d) {
-                    return d.supplier;
-                },
-                function(d) {
-                    return d.category;
-                },
-                function(d) {
-                    return formatMoney(d.contract_value);
-                },
-                function(d) {
-                    return formatDate(d.end_date);
-                }
-            ])
-            .size(200)
-            .sortBy(function(d) {
-                return d.end_date;
-            })
-            .order(d3.ascending);
+        window.dataTable = $('#data_table').dataTable({
+            "order": [[3, 'asc']],
+            "columnDefs": [
+                { "targets": 0, "data": function(d) { return d.supplier; } },
+                { "targets": 1, "data": function(d) { return d.category; } },
+                { "targets": 2, "data": function(d) { return formatMoney(d.contract_value); } },
+                { "targets": 3, "data": function(d) { return formatDate(d.end_date); } }
+            ]
+        });
 
-        var earliest = parseDate("2015-03-01")
-          , latest = parseDate("2020-05-05");
+        function RefreshTable() {
+            dc.events.trigger(function () {
+                dataTable.api()
+                         .clear()
+                         .rows.add( cfd.top(Infinity) )
+                         .draw() ;
+            });
+        }
+
+        for (var i = 0; i < dc.chartRegistry.list().length; i++) {
+            var chartI = dc.chartRegistry.list()[i];
+            chartI.on("filtered", RefreshTable);
+        }
+
+        var earliest = parseDate("2015-06-01")
+        // , latest = cfd.top(1)[0].end_date]
+            , latest = parseDate("2020-06-01");
 
         frequencyChart.dimension(cfd)
             .group(cfdg)
@@ -182,8 +197,8 @@ $(document).ready(function() {
 
         frequencyChart.focusCharts([detailChart])
 
-        dc.renderAll()
-
+        dc.renderAll();
+        RefreshTable();
 
         // initialise the starting value for the category filter
         var optionData = d3.values(cfcg.all())
@@ -198,14 +213,15 @@ $(document).ready(function() {
         $('.widget-category-filter').select2();
 
         // pre-set the brush selection between these two dates
-        frequencyChart.filter([parseDate("2015-05-01"), parseDate("2016-02-01")])
+        frequencyChart.filter([parseDate("2015-06-01"), parseDate("2016-02-01")])
 
         // add listener for updating the categories
         $('.pipeline-widget')
             .on('change', '.widget-category-filter', function() {
                 var category = $(this).find('option:selected').attr('value');
-                cfc.filterExact(category)
-                dc.redrawAll()
+                cfc.filterExact(category);
+                dc.redrawAll();
+                RefreshTable();
             })
     });
 });

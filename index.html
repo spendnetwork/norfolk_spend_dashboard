@@ -18,10 +18,16 @@
         <link rel="stylesheet" href="css/menus.css">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
-				<link rel="stylesheet" href="/css/norfolk-timeline.css">
+        <link rel="stylesheet" href="css/norfolk-timeline.css">
 		    <!-- <link rel="stylesheet" href="/css/norfolk-pipeline-page.css"> -->
-		    <link rel="stylesheet" href="/css/dc.css">
-        <link rel="stylesheet" href="/css/norfolk-timeline.css">
+        <link rel="stylesheet" href="css/dc.css">
+        <link rel="stylesheet" href="css/norfolk-timeline.css">
+
+        <style>
+            #data_table_wrapper {
+                margin: 10px 20px 0 20px;
+            }
+        </style>
 
          <!--
         <link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=fontawesome ">
@@ -35,7 +41,7 @@
 
 
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <script src="js/d3.min.js"></script>
+        <script src="js/d3.js"></script>
         <script src="js/dimple.v2.1.2.min.js"></script>
         <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
         <script src="js/pace.min.js"></script>
@@ -260,7 +266,7 @@
 						          -->
 						          <div class="box_sub">
 						              <div class="pure-u-1-6 download_data">
-						                  <a class="pure-button button-secondary" href="/data/detail_entity_seuk.csv">
+						                  <a class="pure-button button-secondary" href="pipeline.html">
 						                      <i class="fa fa-arrow-right"></i>
 											  Detail
 						                  </a>
@@ -274,7 +280,7 @@
 						              </div>
 
 													<div class="pure-g-r pipeline_table">
-		                        <table class='table table-hover pure-table pure-table-horizontal pure-table-striped pipeline-table"' id='dc-table-graph'>
+		                        <table class='display' id='data_table'>
 		                          <thead>
 		                            <tr class='header'>
 		                              <th>Supplier</th>
@@ -376,16 +382,22 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
+
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">
+        <!-- DataTables -->
+        <script type="text/javascript" charset="utf8" src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+
         <script src="js/plugins.js"></script>
         <script src="js/graphs.js"></script>
 
         <script src="js/main.js"></script>
 
-				<script src="js/crossfilter.v1.js"></script>
+        <script src="js/crossfilter.v1.js"></script>
         <script src="js/dc.js"></script>
         <script src="js/nf_pipeline.js"></script>
         <script src="js/norfolk_timeline.js"></script>
-				<script src="js/main_pipeline.js"></script>
+        <script src="js/main_pipeline.js"></script>
 
 
 

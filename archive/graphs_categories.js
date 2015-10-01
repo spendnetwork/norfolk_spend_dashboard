@@ -11,27 +11,11 @@
   //  $('#data_table').DataTable();
 //} );
 
-function commaSeparateNumber(val){
-    while (/(\d+)(\d{3})/.test(val.toString())){
-      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
-    }
-    return val;
-  }
+
 function generatedata(year)
 {
 
-    d3.json("https://dataclips.heroku.com/hzvejlkwrqxguqgwkqztvjajajqz-norfolk_supplier.json", function(jsondata) {
-
-        var data = []
-        for (var i = 0; i < jsondata['values'].length; i++) {
-            var row = jsondata['values'][i];
-            data.push({
-                'supplier_name': row[0],
-                'org_type': row[1],
-                'total_spend': row[2],
-                'YYYY': row[3]
-            });
-        }
+d3.csv("data/ncc_category2.csv", function(data) {   
 	
 	 if (typeof year !== "undefined" && year !='') {
             // console.log("data.length", data.length);
@@ -44,19 +28,18 @@ function generatedata(year)
 	if(data.length > 0)
 	{	
 update1(data,year);
-generatedatatable(data);
 	}
 	else
-	{ 
+	{
 		jQuery(".t22table").html('<table id="data_table" class="display"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td></td><td></td><td></td></tr></tbody></table></div>');
-		// adds blank table so that we don't break the dataTables() func 
+		
 	}
 	});
 	
 	
 }
 
-// the code to reset button and fetch the values for graph and datatable for that year selected
+
 function setdata(val,id)
 {
 	if (oTable != null) {
@@ -67,7 +50,7 @@ function setdata(val,id)
      }
 	
 	$("#r1b1 .graph_wrapper").empty();
-	$(".pure-button").removeClass("pure-button-active");
+	$(".pure-button button-small").removeClass("pure-button-active");
 	$("#"+id).addClass("pure-button-active");
 	try{
 	generatedata(val);
@@ -92,13 +75,11 @@ function setdata(val,id)
 	
 	
 	var data2= d3.nest()
-	.key(function(d) { return d.supplier_name;})
+	.key(function(d) { return d.category;})
 	.rollup(function(d) { 
 	var arr=[];
 	arr[0] = d3.sum(d, function(g) {return g.total_spend; });
 	arr[1] = d[0].YYYY;
-	arr[2] = d[0].org_type;
-	
 	return arr;
 	})
 	
@@ -124,14 +105,11 @@ function setdata(val,id)
 	var data3=[];
 try {
 	data2.forEach(function(d) {
-		data3.push( new Object({ supplier_name: d.key,total_spend: d.values[0],year:d.values[1] , org_type: d.values[2]}));
+		data3.push( new Object({category: d.key,total_spend: d.values[0],year:d.values[1]}));
+	top10.push (new Object({ category : d.key,	total_spend : d.values[0],year: d.values[1]}));
 	jj++;
-	if(jj<=15) {
-	top10.push (new Object({ supplier_name : d.key,	total_spend : d.values[0],year: d.values[1]}));
-		
-		
-		
-		//throw BreakException;
+	if(jj>9) {
+		throw BreakException;
 		}
 	
 	});
@@ -145,57 +123,32 @@ try {
 	//var top10 = data2.slice(0, 10); // slice the first 10
 	
 	    
-	var svg1_1b = dimple.newSvg("#r1b1 .graph_wrapper", "100%", "400");     	
+	var svg1_1b = dimple.newSvg("#r1b1 .graph_wrapper", "100%", 500);     	
         var barChart = new dimple.chart(svg1_1b, top10);
-        barChart.setBounds(20, 30, "94%", "88%");
-        barChart.addMeasureAxis("x", "total_spend");
-        var y = barChart.addCategoryAxis("y", "supplier_name");
-        y.addOrderRule("total_spend");
-        y.hidden = true;
-        
+        barChart.setBounds(300, 30, "70%", "88%");
+        var y = barChart.addCategoryAxis("y", "category");
+        var x = barChart.addMeasureAxis("x", "total_spend");
         var barChartseries = barChart.addSeries(null, dimple.plot.bar);
         y.showGridlines = false;
+        y.addOrderRule("total_spend");
         
         barChart.defaultColors = [
           new dimple.color("#81C936", "#81C936", 1), // Norfolk green
         ];   
-    
-    barChartseries.afterDraw = function(s, d) {
-        var shape = d3.select(s);
-        var widthThreshold = svg1_1b.node().getBoundingClientRect().width / 2;
-        var textXPos = shape.attr('width') > widthThreshold ? 0 : shape.attr('width') + 150;
-        //var textColor = shape.attr('width') > widthThreshold ? "white" : "black";
-
-        svg1_1b.append("text")
-            .attr("x", parseFloat(shape.attr("x")) + 10)
-            .attr("y", parseFloat(shape.attr("y")) + 14) // need to calculated height based on number in series
-            .style('fill', "black")
-            .text(d.cy);
-    	};
-
-        
-      barChart.draw(2000);
-	
-	
+      barChart.draw();
+	 
 	  
- 
-      
-	}
-	
-function generatedatatable(data)
-{
-	console.log(data);
-   // create the table header
+    // create the table header
      d3.select("#data_table thead")
         .append('tr')
         .selectAll("th")
-        .data(d3.keys(data[0]))
-        .enter().append("th").text(function(d){ console.log(d);if(d== "supplier_name") return "Supplier"; if(d == "total_spend") return "Amount"; if(d == "YYYY") return "Year" ; if(d == "org_type") return "Supplier Type" ; });
+        .data(d3.keys(data3[0]))
+        .enter().append("th").text(function(d){ console.log(d);if(d== "category") return "Category"; if(d == "total_spend") return "Amount"; if(d == "year") return "Year"; });
         
     // fill the table
     // create rows
     var tr = d3.select("tbody").selectAll("tr")
-        .data(data).enter().append("tr")
+        .data(data3).enter().append("tr")
 
     // cells
 	var col=0;
@@ -210,8 +163,8 @@ function generatedatatable(data)
 			col++;
 		
 			
-				if(col % 4 == 3)
-				d = "£"+commaSeparateNumber(Math.ceil(d));
+				if(col % 3 == 2)
+				d = "£"+Math.ceil(d);
 				
 				
 			
@@ -219,11 +172,9 @@ function generatedatatable(data)
 			})
 			.attr("data-sort", function( d ){  return d; });
 
-        oTable =  $("#data_table").dataTable({
-	        "order": [[1, 'desc']]
- 		});	
-}	
-	
+ oTable =  $("#data_table").dataTable();
+
+	}
 $(document).ready( function () {
 	generatedata("");
 });

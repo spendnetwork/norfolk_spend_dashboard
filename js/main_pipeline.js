@@ -1,11 +1,27 @@
 $(document).ready(function() {
 
-  window.dataTable = dc.dataTable("#dc-table-graph");
   window.frequencyChart = dc.barChart("#dc-frequency-chart");
 
-  d3.json('/js/norfolk.pipeline.data.json', function(payload) {
+  d3.json('https://dataclips.heroku.com/eaarihswareqaljzalbnhwvmibdc-norfolk_pipeline.json', function(jsondata) {
 
-    coercePayload(payload);
+    var payload = [];
+
+    for (var i = 0; i < jsondata['values'].length; i++) {
+        var row = jsondata['values'][i];
+        if (!row[2]) {
+            continue;
+        }
+        var d = {
+            'index': i,
+            'supplier': row[0],
+            'end_date': parseDate(row[2]),
+            'category': row[1],
+            'contract_value': 0+row[3]
+        };
+        payload.push(d);
+    }
+
+    //coercePayload(payload);
 
     cf = crossfilter(payload);
     all = cf.groupAll();
@@ -23,9 +39,9 @@ $(document).ready(function() {
     var chartWidth = parseInt(d3.select('.pipeline .graph_wrapper').style('width'), 10)
 
 
-    var earliest = parseDate("2015-03-01")
+    var earliest = parseDate("2015-06-01")
       // , latest = cfd.top(1)[0].end_date]
-      , latest = parseDate("2017-05-05");
+      , latest = parseDate("2017-06-01");
 
     frequencyChart.dimension(cfd)
       .group(cfdg)
@@ -49,6 +65,8 @@ $(document).ready(function() {
       }
       this._focusCharts = chartlist; // only needed to support the getter above
       this.on('filtered', function(range_chart) {
+          RefreshTable();
+
         if (!range_chart.filter()) {
           dc.events.trigger(function() {
             chartlist.forEach(function(focus_chart) {
@@ -66,7 +84,7 @@ $(document).ready(function() {
           });
 
           _buildCategoryFilterOptions(".widget-category-filter", formatted_keys)
-          $('.widget-category-filter').select2();
+          //$('.widget-category-filter').select2();
 
         } else chartlist.forEach(function(focus_chart) {
           if (!rangesEqual(range_chart.filter(), focus_chart.filter())) {
@@ -82,7 +100,7 @@ $(document).ready(function() {
             });
 
             _buildCategoryFilterOptions(".widget-category-filter", formatted_keys)
-            $('.widget-category-filter').select2();
+            //$('.widget-category-filter').select2();
 
           }
         });
@@ -92,38 +110,42 @@ $(document).ready(function() {
 
     window.frequencyChart = frequencyChart;
 
-    dataTable.width(chartWidth).height(800)
-      .dimension(cfd)
-      .group(function(d) {
-          return "Contracts Ending Soon"
-      })
-      .columns([
-          function(d) {
-              return d.supplier;
-          },
-          function(d) {
-              return d.category;
-          },
-          function(d) {
-              return formatMoney(d.contract_value);
-          },
-          function(d) {
-              return formatDate(d.end_date);
-          }
-      ])
-      .size(5)
-      .sortBy(function(d) {
-          return d.end_date;
-      })
-      .order(d3.ascending);
 
-      frequencyChart.focusCharts([])
+
+      window.dataTable = $('#data_table').dataTable({
+          "order": [[3, 'asc']],
+          "columnDefs": [
+              { "targets": 0, "data": function(d) { return d.supplier; } },
+              { "targets": 1, "data": function(d) { return d.category; } },
+              { "targets": 2, "data": function(d) { return formatMoney(d.contract_value); } },
+              { "targets": 3, "data": function(d) { return formatDate(d.end_date); } }
+          ],
+          "searching": false,
+          "lengthChange": false,
+          "pageLength": 5
+      });
+
+      function RefreshTable() {
+          dc.events.trigger(function () {
+              dataTable.api()
+                  .clear()
+                  .rows.add( cfd.top(Infinity) )
+                  .draw() ;
+          });
+      }
+
+      for (var i = 0; i < dc.chartRegistry.list().length; i++) {
+          var chartI = dc.chartRegistry.list()[i];
+          chartI.on("filtered", RefreshTable);
+      }
+
+      frequencyChart.focusCharts([]);
+
+    frequencyChart.filter([parseDate("2015-06-01"), parseDate("2015-09-01")]);
+    cfd.filter([parseDate("2015-06-01"), parseDate("2015-09-01")]);
 
     dc.renderAll();
-
-    frequencyChart.filter([parseDate("2015-05-01"), parseDate("2015-08-01")])
-    dc.renderAll();
-    // dc.redrawAll();
+    RefreshTable();
   })
 
 

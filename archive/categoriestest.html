@@ -18,10 +18,10 @@
         <link rel="stylesheet" href="css/menus.css">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
-				<link rel="stylesheet" href="css/norfolk-timeline.css">
+		<link rel="stylesheet" href="/css/norfolk-timeline.css">
 		    <!-- <link rel="stylesheet" href="/css/norfolk-pipeline-page.css"> -->
-		    <link rel="stylesheet" href="css/dc.css">
-        <link rel="stylesheet" href="css/norfolk-timeline.css">
+		<link rel="stylesheet" href="/css/dc.css">
+        <link rel="stylesheet" href="/css/norfolk-timeline.css">
 
          <!--
         <link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=fontawesome ">
@@ -38,8 +38,6 @@
         <script src="js/d3.min.js"></script>
         <script src="js/dimple.v2.1.2.min.js"></script>
         <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-        <script src="js/pace.min.js"></script>
-
 
     </head>
     <body>
@@ -59,11 +57,10 @@
                 <nav class="pure-menu pure-menu-open pure-menu-horizontal">
                     <ul>
                         <li class="pure-menu"><a href="index.html">Dashboard</a></li>
-                        <li class="pure-menu"><a href="categories.html">Categories</a></li>
+                        <li class="pure-menu-selected"><a href="categories.html">Categories</a></li>
                         <li class="pure-menu"><a href="suppliers.html">Suppliers</a></li>
-                        <li class="pure-menu-selected"><a href="services.html">Services</a></li>
+                        <li class="pure-menu"><a href="services.html">Services</a></li>
                         <li class="pure-menu"><a href="pipeline.html">Pipeline</a></li>
-                        <li class="pure-menu"><a href="downloads.html">Downloads</a></li>
                         <!-- other items ... -->
                     </ul>
                 </nav>
@@ -85,7 +82,7 @@
 	            &nbsp;/&nbsp;
 	            <a href="index.html">dashboard</a>
 	            &nbsp;/&nbsp;
-	            <a href="services.html">services</a>
+	            <a href="suppliers.html">suppliers</a>
 	        </div> <!-- breadcrumb -->
 
 			<!-- ++++++++++++++++++++++++++++++++++++++++++++++++ Row 1 +++++++++++++++++++++ -->
@@ -94,18 +91,19 @@
                     <div class="container_box r1b1" id="r1b1">
 	                    <!-- +++++++++++++++++++ Row 1, box 1 ++++++++++++++++++++++++++++++++
                         --><div class="box_header box_text pure-g-r">
-                            Service spend
+                            Monthly spend
                         </div>
                         <div class="box_sub">
                             <div class="pure-u-7-8 year-chooser">
-                              <button class="pure-button button-small pure-button-active" id="yall" onclick="setdata('',this.id)">All</button>
+                                <button class="pure-button button-small pure-button-active" id="yall" onclick="setdata('',this.id)">All</button>
                                 <button class="pure-button button-small" id="y2012" onclick="setdata('2012',this.id)">2012</button>
                                 <button class="pure-button button-small" id="y2013" onclick="setdata('2013',this.id)">2013</button>
                                 <button class="pure-button button-small" id="y2014" onclick="setdata('2014',this.id)">2014</button>
                                 <button class="pure-button button-small" id="y2015" onclick="setdata('2015',this.id)">2015</button>
+
                             </div><!--
                             --><div class="pure-u-1-8 download_data">
-                                <a class="pure-button button-secondary" href="https://dataclips.heroku.com/trvuaxfjorkjryxjhyevbtzkscml-norfolk_service.csv">
+                                <a class="pure-button button-secondary" href="/data/summary_entity_seuk.csv">
                                     <i class="fa fa-download"></i>
                                     Data
                                 </a>
@@ -125,26 +123,29 @@
                             -->
                         </div>
                         <div class="pure-g-r box_main" id="r1b1">
-                            <div class="graph_wrapper"></div>
+                            <div class="graph_wrapper"></div>   
                         </div>
-                         <div class="box_sub box_sub_table">
-		                    <div class="pure-g-r box_table">
-		                    	<div class="pure-g-r t22table">
-		   	                        <table id="data_table" class="display">
-										<thead></thead>
-										<tbody></tbody>
-									</table>
-		                    	</div>
-		                    </div>
+                        <BR><BR><BR><BR><BR><BR><BR>
+                        <div class="pure-g-r box_table">
+	                    	<div class="pure-u-1-24">&nbsp;</div>
+	                    	<div class="pure-u-22-24 t22table">
+	   	                        <table id="data_table" class="display">
+									<thead></thead>
+									<tbody></tbody>
+								</table>
+	                    	</div>
+							<div class="pure-u-1-24">&nbsp;</div>
                         </div>
                         <div class="box_footer">
 	                        Dashboard by <a href="http://www.spendnetwork.com">Spend Network</a>
+							<a class="pure-button" href="#">More</a>
 	                    </div>
                     </div>
                 </div>
             </div><!--
             ++++++++++++++++++++++++++++++++++++ end of row 1 ++++++++++++++++++++++++++++++++++++++++++++++++++
-           
+			
+			
         --><div class="pure-u-1-24">&nbsp;</div>
         </section>
 
@@ -165,7 +166,9 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-  <!-- DataTables CSS -->
+      
+        
+        <!-- DataTables CSS -->
 		<link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">
   
 		<!-- jQuery -->
@@ -174,19 +177,8 @@
 		<!-- DataTables -->
 		<script type="text/javascript" charset="utf8" src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
 
-		
-        <script src="js/plugins.js"></script>
-        <script src="js/graphs_services.js"></script>
-
-        <script src="js/main.js"></script>
-
-				<script src="js/crossfilter.v1.js"></script>
-        <script src="js/dc.js"></script>
-        <script src="js/nf_pipeline.js"></script>
-        <script src="js/norfolk_timeline.js"></script>
-				<script src="js/main_pipeline.js"></script>
-
-
+  <script src="js/plugins.js"></script>
+        <script src="js/graphs_categories.js"></script>
 
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
