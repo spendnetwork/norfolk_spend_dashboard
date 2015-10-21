@@ -1,0 +1,56 @@
+.graph_wrapper {
+  /*margin-left:10em;*/
+  height:200px;
+  clear:left;
+}
+
+
+/* Pagination for pipeline results */
+
+.pagination p{
+  width: 28em;
+  margin-left:10em;
+  display:inline-block;
+}
+
+.pagination span{
+  display: inline;
+  margin-left:1em;
+  margin-right:1em;
+}
+
+
+.no-results {
+  margin-top: 4em;
+  margin-left: 10em;
+  min-height: 300px;
+  width: 870px;
+  background: #eee;
+  padding-top: 4em;
+
+}
+
+.no-results h3, h4{
+  text-align: center;
+  color: #ddd;
+}
+
+.no-results h3{
+  font-size: 2em;
+}
+
+.no-results h4{
+  font-size: 1.5em;
+}
+
+.dc-chart {
+    float: left;
+}
+
+.box_footer {
+    clear: both;
+}
+
+#data_table_wrapper {
+    padding-top: 20px;
+}

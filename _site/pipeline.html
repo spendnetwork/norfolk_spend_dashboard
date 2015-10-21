@@ -1,0 +1,216 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Norfolk County Council ::: Spending Dashboard ::: Open Spending Data bought to life</title>
+    <meta name="description" content="Developer: Spendnetwork.com, Organiser: Norfolk County Council, Category: Local Goverment, Spending, Open Data, Total size: 54m rows">
+    <meta name="robots" content="all">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/tables.css">
+    <link rel="stylesheet" href="css/menus.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/norfolk-timeline.css">
+    <link rel="stylesheet" href="css/norfolk-pipeline-page.css">
+    <link rel="stylesheet" href="css/dc.css">
+    <!--
+        <link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=fontawesome ">
+        -->
+
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="js/d3.min.js"></script>
+    <!-- // <script src="js/dimple.v2.1.2.min.js"></script> -->
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="js/pace.min.js"></script>
+
+
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to stay safe online, and to improve your experience.</p>
+        <![endif]-->
+
+    <header>
+        <!-- styling needed for this section -->
+        <div class="headline_row headline_text pure-g">
+            <div class="pure-u-3-4">Norfolk County Council: Spending Dashboard</div>
+            <div class="pure-u pure-u-1-4">
+                <a href="http://www.norfolk.gov.uk/" class="pure-menu-heading">
+                    <img src="/img/norfolk-county-council-logo.jpeg" alt="Norfolk County Council Logo" width="300">
+                </a>
+            </div>
+        </div>
+        <div class="pure-g-r menu_row">
+            <nav class="pure-menu pure-menu-open pure-menu-horizontal">
+                <ul>
+                    <li class="pure-menu"><a href="index.html">Dashboard</a></li>
+                    <li class="pure-menu"><a href="categories.html">Categories</a></li>
+                    <li class="pure-menu"><a href="suppliers.html">Suppliers</a></li>
+                    <li class="pure-menu"><a href="services.html">Services</a></li>
+                    <li class="pure-menu-selected"><a href="pipeline.html">Pipeline</a></li>
+                    <li class="pure-menu"><a href="downloads.html">Downloads</a></li>
+                    <!-- other items ... -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="pure-u-1-24">&nbsp;</div>
+    <!-- add the left hand gutter
+
+    -->
+    <div class="pure-u-22-24">
+        <!-- the core central panel -->
+        <div class="pure-g-r breadcrumb">
+            <a href="/">norfolk.gov.uk</a>&nbsp;/&nbsp;
+            <a href="/">spending</a>&nbsp;/&nbsp;
+            <a href="pipeline.html">contract pipeline</a></div>
+        <!-- breadcrumb -->
+        <div class="pure-u-1-1 dashboard-piece">
+            <div class="dashboard-content">
+                <div class="container_box">
+                    <div class="box_header box_text pure-g-r">
+                        Contract Pipeline
+                    </div>
+                    <div class="simple_page">
+					<!--
+                      <div class="clean_header">The below is a timeline of active contracts with Norfolk Country Council,
+                        sorted by expiry date.<br> 
+                      Explore the data by filtering on spending category,
+                        or by dragging the two bars to select a date range.
+                      </div>
+					-->
+					
+                      <div class="pure-g-r pipeline-widget">
+
+                        <div class="pure-u-22-24 clean_header_large">Showing contracts from <select class="widget-category-filter"><option selected="selected">all spending categories</option></select></div><!--
+						--><div class="pure-u-2-24 clean_header"><a class="pure-button button-secondary" href="https://dataclips.heroku.com/eaarihswareqaljzalbnhwvmibdc-norfolk_pipeline.csv">
+                                <i class="fa fa-download"></i>
+                                Data
+                            </a></div>
+
+                        <div class="dc-data-count">
+                          <span class="filter-count"></span> selected out of <span class="total-count"></span> records
+                          |
+                          <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+                        </div>
+
+                      <div id='pipeline-count'>
+                            <!-- <span class='filter-count'></span> selected out of <span class='total-count'></span> contracts -->
+                        </div>
+                      </div>
+                      
+                      <div class="pure-g-r pipeline">
+                          <div class="graph_wrapper">
+
+                            <div id="dc-frequency-chart">
+                              <!-- <span class="filter"></span> -->
+                            </div>
+
+							<div class="clean_header">
+								Number of expiring tenders
+							</div>
+                            <div id="dc-detail-chart">
+                            </div>
+
+                          </div>
+                      </div>
+
+                      <div class="pagination">
+                      </div>
+
+
+                      <div class="pure-g-r pipeline_table">
+                        <table class='display' id='data_table'>
+                          <thead>
+                            <tr class='header'>
+                              <th>Supplier</th>
+                              <th>Description</th>
+                              <th>Est. Value(£)</th>
+                              <th>Contract End Date</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+
+
+                        <div class="box_footer">powered by <a href="http://www.spendnetwork.com">Spend Network</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+    -->
+        <div class="pure-u-1-24">&nbsp;</div>
+        </section>
+
+
+        <footer>
+            <div class="pure-u-1-24">&nbsp;</div>
+            <div class="pure-u-22-24 breadcrumb">
+                <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Published under Open Government License</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="" alt="link to github repo">An open source, open data project</a> funded by the <a href="http://www.local.gov.uk/local-transparency/-/journal_content/56/10180/3926733/ARTICLE">Local Authority Open Data Breakthrough Fund</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="privacy.html">Privacy policy</a>
+            </div>
+            <div class="pure-u-1-24">&nbsp;</div>
+        </footer>
+
+
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>
+            window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')
+        </script>
+
+        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/css/select2.min.css" rel="stylesheet" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
+
+
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">
+        <!-- DataTables -->
+        <script type="text/javascript" charset="utf8" src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+
+        <script src="js/plugins.js"></script>
+        <script src="js/crossfilter.v1.js"></script>
+        <script src="js/dc.js"></script>
+        <script src="js/graphs.js"></script>
+        <script src="js/norfolk_timeline.js"></script>
+        <script src="js/nf_pipeline.js"></script>
+        <script src="js/norfolk_pipeline_page.js"></script>
+
+
+
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+        //     (function(b, o, i, l, e, r) {
+        //         b.GoogleAnalyticsObject = l;
+        //         b[l] || (b[l] =
+        //             function() {
+        //                 (b[l].q = b[l].q || []).push(arguments)
+        //             });
+        //         b[l].l = +new Date;
+        //         e = o.createElement(i);
+        //         r = o.getElementsByTagName(i)[0];
+        //         e.src = '//www.google-analytics.com/analytics.js';
+        //         r.parentNode.insertBefore(e, r)
+        //     }(window, document, 'script', 'ga'));
+        //     ga('create', 'UA-XXXXX-X', 'auto');
+        //     ga('send', 'pageview');
+        // </script>
+</body>
+
+</html>
