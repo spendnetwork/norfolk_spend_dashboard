@@ -1,0 +1,1 @@
+H|vendor_id|supplier_name|supplier_id|addr_line1|addr_line2|addr_line3|addr_post_town|addr_postcode|supplier_legal_form|close_date|open_date|accounts_category|accounts_next_due_date|dummy data
