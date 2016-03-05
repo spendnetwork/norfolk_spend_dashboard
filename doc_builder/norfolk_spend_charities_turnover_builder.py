@@ -15,6 +15,7 @@ spend_charities_dat = 'spend_charities_turnover_' + today + '.dat'
 spend_charities_txt = 'spend_charities_turnover_X_' + today + '.txt'
 spend_charities_dat_target = open(spend_charities_dat, 'w')  ## a will append, w will over-write
 spend_charities_txt_target = open(spend_charities_txt, 'w')
+ch_num_invalid = 0
 
 header = 'H|vendor_id|Charities Commission Number|Accounts Date|Income|Spending|dummy_data\n'
 spend_charities_dat_target.write(header)
@@ -49,7 +50,7 @@ try:
     cur.execute(
         "select buyers_ref_for_supplier, charity_id from trans_clean where entity_id = 'E2620_NCC_gov' and charity_id is not null group by buyers_ref_for_supplier, charity_id;")  # get the ids from trans_clean
     sup_ids = cur.fetchall()
-
+    print 'sup_ids: %s' %sup_ids
 
     for sup in sup_ids:
         vn_id = sup[0]
@@ -85,13 +86,16 @@ try:
                         txt_line = dat_line.replace('|',',')
                         spend_charities_txt_target.write(txt_line)
 
-                        footer_count =+ 1
+                        footer_count += 1
                 else:
+                    ch_num_invalid += 1
                     continue
 
     #write footers
     spend_charities_dat_target.write('F|%s' % footer_count)
     spend_charities_txt_target.write('F,%s' % footer_count)
+    print 'ch_num_invalid: %s' %ch_num_invalid
+    print 'footer_count: %s' %footer_count
 
     spend_charities_dat_target.close()
     spend_charities_txt_target.close()

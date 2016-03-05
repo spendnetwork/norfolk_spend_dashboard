@@ -12,6 +12,7 @@ H = 'D'  # create the leading column
 dummy_data = 'x'
 footer_count = 0
 today = dt.date.today().strftime("%Y%m%d")
+ch_num_invalid = 0
 
 spend_house_dat = 'spend_house_' + today + '.dat'
 spend_house_txt = 'spend_house_X_' + today + '.txt'
@@ -38,6 +39,7 @@ def json_field(jsonobj, default, *names):
     except (TypeError, KeyError):
         return default
 
+
 def is_json(obj):
     try:
         json_object = json.loads(obj.text)
@@ -49,17 +51,15 @@ try:
     cur = conn.cursor()
 
     cur.execute(
-        "select buyers_ref_for_supplier, supplier_industry_num from trans_clean where entity_id = 'E2620_NCC_gov' and supplier_industry_num is not null group by buyers_ref_for_supplier, supplier_industry_num")  # get the ids from trans_clean
+        "select buyers_ref_for_supplier, supplier_industry_num from trans_clean where entity_id = 'E2620_NCC_gov' and supplier_industry_num is not null and buyers_ref_for_supplier is not null and lower(buyers_ref_for_supplier) not like '%redact%' group by buyers_ref_for_supplier, supplier_industry_num")  # get the ids from trans_clean
     sup_ids = cur.fetchall()
 
 
     for sup in sup_ids:
         vn_id = sup[0]
 
-        if vn_id:
-            vn_id
-        else:
-            vn_id = ''
+        if not vn_id:
+            pass  # if not a string then don't run
 
         sn_id = sup[1]
         if sn_id[0] <> '0':
@@ -95,6 +95,7 @@ try:
                     spend_house_txt_target.write(txt_line)
                     footer_count += 1
                 else:
+                    ch_num_invalid += 1
                     continue
 
     #write footers
@@ -103,6 +104,8 @@ try:
 
     spend_house_dat_target.close()
     spend_house_txt_target.close()
+    print 'ch_num_invalid: %s' %ch_num_invalid
+    print 'footer_count: %s' %footer_count
 
 except psycopg2.DatabaseError, e:
     print 'Error %s' % e

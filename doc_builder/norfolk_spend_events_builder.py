@@ -9,6 +9,7 @@ urlparse.uses_netloc.append("postgres")
 url = urlparse.urlparse(os.environ['DATABASE_URL'])
 H = 'D'  # create the leading column
 dummy_data = 'x'
+footer_count = 0
 today = dt.date.today().strftime("%Y%m%d")
 spend_events_dat = 'spend_events_' + today + '.dat'
 spend_events_txt = 'spend_events_X_' + today + '.txt'
@@ -96,7 +97,7 @@ try:
                     txt_line = dat_line.replace('|',',')
                     spend_events_txt_target.write(txt_line)
 
-                    footer_count =+ 1
+                    footer_count += 1
 
     #write footers
     spend_events_dat_target.write('F|%s' % footer_count)
