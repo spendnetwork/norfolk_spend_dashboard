@@ -340,6 +340,7 @@ function update_r2b2(year) {
         };
 
         myChart.draw(2000);
+        x.titleShape.text("your x axis title");
 
         // get medium / large business number
 
