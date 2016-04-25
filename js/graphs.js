@@ -309,14 +309,14 @@ function update_r2b2(year) {
                 console.log(data[org_type]);
                 csv.push({
                     'org_type': org_type,
-                    'total spend': data[org_type]
+                    'sum': data[org_type]
                 });
             }
         }
 
         var myChart = new dimple.chart(svg2_2, csv);
         myChart.setBounds(10, 15, "92%", "84%");
-        myChart.addMeasureAxis("x", "sum");
+        myChart.addMeasureAxis("x", "total spend");
         var y = myChart.addCategoryAxis("y", "org_type");
         y.addOrderRule("sum");
         y.hidden = true;
