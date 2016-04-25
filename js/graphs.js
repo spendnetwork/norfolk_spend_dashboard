@@ -316,7 +316,7 @@ function update_r2b2(year) {
 
         var myChart = new dimple.chart(svg2_2, csv);
         myChart.setBounds(10, 15, "92%", "84%");
-        myChart.addMeasureAxis("x", "sum");
+        var x = myChart.addMeasureAxis("x", "sum");
         var y = myChart.addCategoryAxis("y", "org_type");
         y.addOrderRule("sum");
         y.hidden = true;
