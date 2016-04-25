@@ -316,9 +316,9 @@ function update_r2b2(year) {
 
         var myChart = new dimple.chart(svg2_2, csv);
         myChart.setBounds(10, 15, "92%", "84%");
-        myChart.addMeasureAxis("x", "sum total");
+        myChart.addMeasureAxis("x", "sum");
         var y = myChart.addCategoryAxis("y", "org_type");
-        y.addOrderRule("sum");
+        y.addOrderRule("sum total");
         y.hidden = true;
         // flat single colour, to add variable colours add series name in place of null
         var buyerchartSeries = myChart.addSeries(null, dimple.plot.bar);
