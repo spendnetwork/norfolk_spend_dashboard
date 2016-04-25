@@ -309,7 +309,7 @@ function update_r2b2(year) {
                 console.log(data[org_type]);
                 csv.push({
                     'org_type': org_type,
-                    'total_spend': data[org_type]
+                    'sum': data[org_type]
                 });
             }
         }
@@ -340,7 +340,6 @@ function update_r2b2(year) {
         };
 
         myChart.draw(2000);
-        x.titleShape.text("your x axis title");
 
         // get medium / large business number
 
