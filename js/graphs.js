@@ -318,7 +318,7 @@ function update_r2b2(year) {
         myChart.setBounds(10, 15, "92%", "84%");
         myChart.addMeasureAxis("x", "spend total");
         var y = myChart.addCategoryAxis("y", "org_type");
-        y.addOrderRule("spend_total");
+        y.addOrderRule("sum");
         y.hidden = true;
         // flat single colour, to add variable colours add series name in place of null
         var buyerchartSeries = myChart.addSeries(null, dimple.plot.bar);
