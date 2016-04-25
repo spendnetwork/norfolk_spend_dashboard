@@ -316,9 +316,10 @@ function update_r2b2(year) {
 
         var myChart = new dimple.chart(svg2_2, csv);
         myChart.setBounds(10, 15, "92%", "84%");
-        myChart.addMeasureAxis("x", "total spend");
+        myChart.addMeasureAxis("x", "sum");
+        var x = myChart.addMeasureAxis("x", "sum");
         var y = myChart.addCategoryAxis("y", "org_type");
-        y.addOrderRule("total spend");
+        y.addOrderRule("sum");
         y.hidden = true;
         // flat single colour, to add variable colours add series name in place of null
         var buyerchartSeries = myChart.addSeries(null, dimple.plot.bar);
@@ -340,6 +341,7 @@ function update_r2b2(year) {
         };
 
         myChart.draw(2000);
+        x.titleShape.text("total spend")
 
         // get medium / large business number
 
