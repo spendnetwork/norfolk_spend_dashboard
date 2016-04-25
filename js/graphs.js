@@ -309,7 +309,7 @@ function update_r2b2(year) {
                 console.log(data[org_type]);
                 csv.push({
                     'org_type': org_type,
-                    'sum': data[org_type]
+                    'total spend': data[org_type]
                 });
             }
         }
