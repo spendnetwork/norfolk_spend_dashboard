@@ -317,7 +317,6 @@ function update_r2b2(year) {
         var myChart = new dimple.chart(svg2_2, csv);
         myChart.setBounds(10, 15, "92%", "84%");
         myChart.addMeasureAxis("x", "sum");
-        var x = myChart.addMeasureAxis("x", "sum");
         var y = myChart.addCategoryAxis("y", "org_type");
         y.addOrderRule("sum");
         y.hidden = true;
@@ -341,7 +340,7 @@ function update_r2b2(year) {
         };
 
         myChart.draw(2000);
-        x.titleShape.text("total spend")
+        myChart.titleShape.text("total spend")
 
         // get medium / large business number
 
