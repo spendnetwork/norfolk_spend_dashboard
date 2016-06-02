@@ -16,7 +16,6 @@ $(document).ready(function() {
             'supplier': row[0],
             'end_date': parseDate(row[3]),
             'category': row[1],
-            'description': row[2],
             'contract_value': 0+row[4]
         };
         payload.push(d);
