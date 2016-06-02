@@ -47,7 +47,7 @@ function update_r1b1p1(csv) {
 
     // print the output
     d3.select("#r1b1p1 .pull_fig").remove();
-    d3.select("#r1b1p1").append("div").attr("class", "pull_fig").html(fd);
+    d3.select("#r1b1p1").insert("div",":first-child").attr("class", "pull_fig").html(fd);
 }
 // r1b1p2
 function update_r1b1p2(csv) {
