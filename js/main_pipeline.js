@@ -14,9 +14,9 @@ $(document).ready(function() {
         var d = {
             'index': i,
             'supplier': row[0],
-            'end_date': parseDate(row[3]),
+            'end_date': parseDate(row[2]),
             'category': row[1],
-            'contract_value': 0+row[4]
+            'contract_value': 0+row[3]
         };
         payload.push(d);
     }
@@ -39,9 +39,9 @@ $(document).ready(function() {
     var chartWidth = parseInt(d3.select('.pipeline .graph_wrapper').style('width'), 10)
 
 
-    var earliest = parseDate("2016-03-01")
+    var earliest = parseDate("2015-06-01")
       // , latest = cfd.top(1)[0].end_date]
-      , latest = parseDate("2018-06-01");
+      , latest = parseDate("2017-06-01");
 
     frequencyChart.dimension(cfd)
       .group(cfdg)
@@ -117,9 +117,8 @@ $(document).ready(function() {
           "columnDefs": [
               { "targets": 0, "data": function(d) { return d.supplier; } },
               { "targets": 1, "data": function(d) { return d.category; } },
-              { "targets": 2, "data": function(d) { return d.description; } },
-              { "targets": 3, "data": function(d) { return formatMoney(d.contract_value); } },
-              { "targets": 4, "data": function(d) { return formatDate(d.end_date); } }
+              { "targets": 2, "data": function(d) { return formatMoney(d.contract_value); } },
+              { "targets": 3, "data": function(d) { return formatDate(d.end_date); } }
           ],
           "searching": false,
           "lengthChange": false,
@@ -142,8 +141,8 @@ $(document).ready(function() {
 
       frequencyChart.focusCharts([]);
 
-    frequencyChart.filter([parseDate("2016-03-01"), parseDate("2016-03-01")]);
-    cfd.filter([parseDate("2016-03-01"), parseDate("2015-06-01")]);
+    frequencyChart.filter([parseDate("2015-06-01"), parseDate("2015-09-01")]);
+    cfd.filter([parseDate("2015-06-01"), parseDate("2015-09-01")]);
 
     dc.renderAll();
     RefreshTable();
