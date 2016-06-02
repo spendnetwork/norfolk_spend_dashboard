@@ -39,9 +39,9 @@ $(document).ready(function() {
     var chartWidth = parseInt(d3.select('.pipeline .graph_wrapper').style('width'), 10)
 
 
-    var earliest = parseDate("2015-06-01")
+    var earliest = parseDate("2016-03-01")
       // , latest = cfd.top(1)[0].end_date]
-      , latest = parseDate("2017-06-01");
+      , latest = parseDate("2018-06-01");
 
     frequencyChart.dimension(cfd)
       .group(cfdg)
@@ -141,8 +141,8 @@ $(document).ready(function() {
 
       frequencyChart.focusCharts([]);
 
-    frequencyChart.filter([parseDate("2015-06-01"), parseDate("2015-09-01")]);
-    cfd.filter([parseDate("2015-06-01"), parseDate("2015-09-01")]);
+    frequencyChart.filter([parseDate("2016-03-01"), parseDate("2016-03-01")]);
+    cfd.filter([parseDate("2016-03-01"), parseDate("2015-06-01")]);
 
     dc.renderAll();
     RefreshTable();
