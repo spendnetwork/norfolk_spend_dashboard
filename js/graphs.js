@@ -260,8 +260,8 @@ function update_r2b1(year) {
 
         // print data
         d3.select("#r2b1p1 .pull_fig").remove();
-        d3.select("#r2b1p1").insert("div",":first-child").attr("class", "pull_fig").html(fd);
         d3.select("#r2b1p1 .pull_sub").html(top2[0].category);
+        d3.select("#r2b1p1").insert("div",":first-child").attr("class", "pull_fig").html(fd);
 
         var divws = (top2[1].total_spend / 1000000);
 
@@ -270,8 +270,8 @@ function update_r2b1(year) {
 
         // print data
         d3.select("#r2b1p2 .pull_fig").remove();
-        d3.select("#r2b1p2").insert("div",":first-child").attr("class", "pull_fig").html(fd);
         d3.select("#r2b1p2 .pull_sub").html(top2[1].category);
+        d3.select("#r2b1p2").insert("div",":first-child").attr("class", "pull_fig").html(fd);
     });
 }
 // r2b2-chart & pull quotes
