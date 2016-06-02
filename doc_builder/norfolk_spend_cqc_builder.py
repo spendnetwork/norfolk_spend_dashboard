@@ -73,7 +73,7 @@ try:
     cur = conn.cursor()
 
     cur.execute(
-        "select buyers_ref_for_supplier, cqc_location_id from trans_clean where entity_id = 'E2620_NCC_gov' and cqc_location_id is not null group by buyers_ref_for_supplier, cqc_location_id")  # get the ids from trans_clean
+        "select buyers_ref_for_supplier, cqc_location_id from trans_clean where entity_id = 'E2620_NCC_gov' and cqc_location_id is not null and supplier_id not like '%_xtr' and supplier_id not like '%red%' group by buyers_ref_for_supplier, cqc_location_id")  # get the ids from trans_clean
     sup_ids = cur.fetchall()
     print sup_ids
 
@@ -120,7 +120,6 @@ try:
                 local_auth = json_field(json_data, '', 'localAuthority')
                 last_check = json_field(json_data, '', 'lastReport', 'publicationDate')
                 region = json_field(json_data, '', 'region')
-                report_type = json_field(json_data, '', 'currentRatings','description')
                 overall_rating = json_field(json_data, '', 'currentRatings','overall','rating')
                 ind_ratings = json_field(json_data,'','currentRatings', 'overall', 'keyQuestionRatings')
                 beds = json_field(json_data, '', 'numberOfBeds')
@@ -161,7 +160,33 @@ try:
                     activity = json_field(a, '', 'name')
                     act_list.append(str(activity))
 
-                dat_line = "%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s\n" % \
+                dat_line = "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s|" \
+                           "%s\n" % \
                            (H,
                             sn_id,
                             name,
@@ -181,16 +206,18 @@ try:
                             local_auth,
                             last_check,
                             region,
-                            report_type,
                             overall_rating,
                             safe_rating,
                             effective_rating,
                             caring_rating,
                             responsive_rating,
                             well_led_rating,
-                            beds
+                            beds,
+                            dereg
                             or '')
-                print dat_line
+                print "region: %s" % region
+                print "overall: %s" % overall_rating
+                print "dereg %s" % dereg
                 spend_cqc_dat_target.write(dat_line)
                 txt_line = dat_line.replace('|',',')
                 spend_cqc_txt_target.write(txt_line)

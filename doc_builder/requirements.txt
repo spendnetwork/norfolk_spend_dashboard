@@ -1,0 +1,6 @@
+DateTime==4.1.1
+psycopg2==2.6.1
+pytz==2016.4
+requests==2.10.0
+wsgiref==0.1.2
+zope.interface==4.1.3

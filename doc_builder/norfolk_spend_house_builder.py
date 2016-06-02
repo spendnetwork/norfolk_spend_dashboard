@@ -19,7 +19,7 @@ spend_house_txt = 'spend_house_X_' + today + '.txt'
 spend_house_dat_target = open(spend_house_dat, 'w')  ## a will append, w will over-write
 spend_house_txt_target = open(spend_house_txt, 'w')
 
-header = 'H|vendor_id|supplier_name|supplier_id|addr_line1|addr_line2|addr_line3|addr_post_town|addr_postcode|supplier_legal_form|close_date|open_date|accounts_category|accounts_next_due_date|dummy data\n'
+header = 'H|vendor_id|supplier_name|supplier_id|addr_line1|addr_line2|addr_line3|addr_post_town|addr_postcode|supplier_legal_form|open_date|close_date|accounts_category|accounts_next_due_date|dummy data\n'
 spend_house_dat_target.write(header)
 spend_house_txt_target.write(header)
 
@@ -51,7 +51,7 @@ try:
     cur = conn.cursor()
 
     cur.execute(
-        "select buyers_ref_for_supplier, supplier_industry_num from trans_clean where entity_id = 'E2620_NCC_gov' and supplier_industry_num is not null and buyers_ref_for_supplier is not null and lower(buyers_ref_for_supplier) not like '%redact%' group by buyers_ref_for_supplier, supplier_industry_num")  # get the ids from trans_clean
+        "select buyers_ref_for_supplier, supplier_industry_num from trans_clean where entity_id = 'E2620_NCC_gov' and supplier_industry_num is not null and buyers_ref_for_supplier is not null and lower(buyers_ref_for_supplier) not like '%redact%' and supplier_source_string not like '%redact%' and buyers_ref_for_trans not null group by buyers_ref_for_supplier, supplier_industry_num")  # get the ids from trans_clean
     sup_ids = cur.fetchall()
 
 
@@ -88,7 +88,8 @@ try:
                     accounts_category = json_field(json_data, '', 'primaryTopic', 'Accounts','AccountCategory')
                     accounts_next_due_date = json_field(json_data, '', 'primaryTopic', 'Accounts','NextDueDate')
 
-                    dat_line = "%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s\n" % (H, vn_id, sn_id[0:100], supplier_name[0:100], addr_line1, addr_line2, addr_line3[0:100], addr_post_town[0:200], addr_postcode, supplier_legal_form[0:100], open_date, close_date, accounts_category, accounts_next_due_date, dummy_data or '')
+                    dat_line = "%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s\n" % \
+                               (H, vn_id, sn_id[0:100], supplier_name[0:100], addr_line1, addr_line2, addr_line3[0:100], addr_post_town[0:200], addr_postcode, supplier_legal_form[0:100], open_date, close_date, accounts_category, accounts_next_due_date, dummy_data or '')
                     print dat_line
                     spend_house_dat_target.write(dat_line)
                     txt_line = dat_line.replace('|',',')
