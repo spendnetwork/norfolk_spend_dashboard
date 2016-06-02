@@ -75,7 +75,7 @@ function update_r1b1p2(csv) {
 
     // print data
     d3.select("#r1b1p2 .pull_fig").remove();
-    d3.select("#r1b1p2").append("div").attr("class", "pull_fig").html(fd);
+    d3.select("#r1b1p2").insert("div",":first-child").attr("class", "pull_fig").html(fd);
 }
 // r1b1p3
 function update_r1b1p3(csv) {
@@ -109,7 +109,7 @@ function update_r1b1p3(csv) {
 
     // print data
     d3.select("#r1b1p3 .pull_fig").remove();
-    d3.select("#r1b1p3").append("div").attr("class", "pull_fig").html(fd);
+    d3.select("#r1b1p3").insert("div",":first-child").attr("class", "pull_fig").html(fd);
 }
 // r1b1-chart
 function update_r1b1(year) {
@@ -355,7 +355,7 @@ function update_r2b2(year) {
 
         // print data
         d3.select("#r2b2p1 .pull_fig").remove();
-        d3.select("#r2b2p1").append("div").attr("class", "pull_fig").html(fd);
+        d3.select("#r2b2p1").insert("div",":first-child").attr("class", "pull_fig").html(fd);
 
         var d1 = small_businesses;
         var divd1 = (d1 / 1000000)
@@ -369,7 +369,7 @@ function update_r2b2(year) {
 
         // print data
         d3.select("#r2b2p2 .pull_fig").remove();
-        d3.select("#r2b2p2").append("div").attr("class", "pull_fig").html(fd);
+        d3.select("#r2b2p2").insert("div",":first-child").attr("class", "pull_fig").html(fd);
 
     });
 }
@@ -475,7 +475,7 @@ function update_r2b3(year) {
 
         // print data
         d3.select("#r2b3p1 .pull_fig").remove();
-        d3.select("#r2b3p1").append("div").attr("class", "pull_fig").html(fd);
+        d3.select("#r2b3p1").insert("div",":first-child").attr("class", "pull_fig").html(fd);
 
         // roll up and group data
         var data = d3.nest()
@@ -504,7 +504,7 @@ function update_r2b3(year) {
 
         // print data
         d3.select("#r2b3p2 .pull_fig").remove();
-        d3.select("#r2b3p2").append("div").attr("class", "pull_fig").html(fd);
+        d3.select("#r2b3p2").insert("div",":first-child").attr("class", "pull_fig").html(fd);
     });
 }
 
