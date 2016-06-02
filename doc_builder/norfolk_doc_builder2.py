@@ -40,9 +40,9 @@ try:
     cur = conn.cursor()
 
     cur.execute(
-        "select buyers_ref_for_supplier, supplier_id from trans_clean where entity_id = 'E2620_NCC_gov' and supplier_id is not null group by buyers_ref_for_supplier, supplier_id limit 8;")  # get the ids from trans_clean
+        "select buyers_ref_for_supplier, cqc_location_id from trans_clean where entity_id = 'E2620_NCC_gov' and cqc_location_id is not null and supplier_id not like '%_xtr' and supplier_id not like '%red%' group by buyers_ref_for_supplier, cqc_location_id")  # get the ids from trans_clean
     sup_ids = cur.fetchall()
-
+    print sup_ids
 
     for sup in sup_ids:
         vn_id = sup[0]
