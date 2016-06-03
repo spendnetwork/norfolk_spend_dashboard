@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   window.frequencyChart = dc.barChart("#dc-frequency-chart");
 
-  d3.json('https://dataclips.heroku.com/eaarihswareqaljzalbnhwvmibdc-norfolk_pipeline.json', function(jsondata) {
+  d3.json('https://dataclips.s3.amazonaws.com/oneozfujgidzwkxozkwpcudylpxj.json?response-content-type=application/json&X-Amz-Expires=600&X-Amz-Date=20160603T142509Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJYMGOQOFWG6TTFYA/20160603/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=c5e3c1e024fc7353562dd4d8cea98a4ec7c7d11e5c97a37bf6c971691bc37b80', function(jsondata) {
 
     var payload = [];
 
