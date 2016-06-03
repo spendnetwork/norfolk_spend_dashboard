@@ -14,9 +14,9 @@ $(document).ready(function() {
         var d = {
             'index': i,
             'supplier': row[0],
-            'end_date': parseDate(row[3]),
+            'end_date': parseDate(row[2]),
             'category': row[1],
-            'contract_value': 0+row[4]
+            'contract_value': 0+row[3]
         };
         payload.push(d);
     }
