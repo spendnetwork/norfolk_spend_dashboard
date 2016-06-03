@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     for (var i = 0; i < jsondata['values'].length; i++) {
         var row = jsondata['values'][i];
-        if (!row[3]) {
+        if (!row[2]) {
             continue;
         }
         var d = {
