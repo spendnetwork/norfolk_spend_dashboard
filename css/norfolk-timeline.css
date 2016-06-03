@@ -101,3 +101,7 @@ table {
 #data_table {
     color: #2C3E50;
 }
+
+#data_table thead {
+    text-align: left;
+}
