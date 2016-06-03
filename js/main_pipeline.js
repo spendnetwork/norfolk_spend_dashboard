@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     for (var i = 0; i < jsondata['values'].length; i++) {
         var row = jsondata['values'][i];
-        if (!row[2]) {
+        if (!row[3]) {
             continue;
         }
         var d = {
@@ -17,7 +17,7 @@ $(document).ready(function() {
             'end_date': parseDate(row[2]),
             'category': row[1],
             'contract_value': 0+row[3],
-            'description': row[1]
+            'description': row[4]
         };
         payload.push(d);
     }
