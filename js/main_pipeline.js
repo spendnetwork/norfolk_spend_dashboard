@@ -119,7 +119,8 @@ $(document).ready(function() {
               { "targets": 0, "data": function(d) { return d.supplier; } },
               { "targets": 1, "data": function(d) { return d.category; } },
               { "targets": 2, "data": function(d) { return formatMoney(d.contract_value); } },
-              { "targets": 3, "data": function(d) { return formatDate(d.end_date); } }
+              { "targets": 3, "data": function(d) { return formatDate(d.end_date); } },
+              { "targets": 4, "data": function(d) { return d.description; } },
           ],
           "searching": false,
           "lengthChange": false,
