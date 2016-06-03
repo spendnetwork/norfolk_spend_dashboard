@@ -16,8 +16,8 @@ $(document).ready(function() {
             'supplier': row[0],
             'end_date': parseDate(row[2]),
             'category': row[1],
-            'description': row[4],
-            'contract_value': 0+row[3]
+            'contract_value': 0+row[3],
+            'description': row[4]
         };
         payload.push(d);
     }
@@ -118,9 +118,9 @@ $(document).ready(function() {
           "columnDefs": [
               { "targets": 0, "data": function(d) { return d.supplier; } },
               { "targets": 1, "data": function(d) { return d.category; } },
-              { "targets": 2, "data": function(d) { return d.description; } },
-              { "targets": 3, "data": function(d) { return formatMoney(d.contract_value); } },
-              { "targets": 4, "data": function(d) { return formatDate(d.end_date); } },
+              { "targets": 2, "data": function(d) { return formatMoney(d.contract_value); } },
+              { "targets": 3, "data": function(d) { return formatDate(d.end_date); } },
+              { "targets": 4, "data": function(d) { return d.description; } }
           ],
           "searching": false,
           "lengthChange": false,
