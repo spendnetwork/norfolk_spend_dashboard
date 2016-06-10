@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   window.frequencyChart = dc.barChart("#dc-frequency-chart");
 
-  d3.json('https://dataclips.s3.amazonaws.com/oneozfujgidzwkxozkwpcudylpxj.json?response-content-type=application/json&X-Amz-Expires=600&X-Amz-Date=20160603T142509Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJYMGOQOFWG6TTFYA/20160603/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=c5e3c1e024fc7353562dd4d8cea98a4ec7c7d11e5c97a37bf6c971691bc37b80', function(jsondata) {
+  d3.json('https://dataclips.heroku.com/eaarihswareqaljzalbnhwvmibdc-norfolk_pipeline.json', function(jsondata) {
 
     var payload = [];
 
@@ -16,8 +16,7 @@ $(document).ready(function() {
             'supplier': row[0],
             'end_date': parseDate(row[2]),
             'category': row[1],
-            'contract_value': 0+row[3],
-            'description': row[1]
+            'contract_value': 0+row[3]
         };
         payload.push(d);
     }
@@ -40,9 +39,9 @@ $(document).ready(function() {
     var chartWidth = parseInt(d3.select('.pipeline .graph_wrapper').style('width'), 10)
 
 
-    var earliest = parseDate("2016-03-01")
+    var earliest = parseDate("2015-06-01")
       // , latest = cfd.top(1)[0].end_date]
-      , latest = parseDate("2018-03-01");
+      , latest = parseDate("2017-06-01");
 
     frequencyChart.dimension(cfd)
       .group(cfdg)
@@ -116,11 +115,10 @@ $(document).ready(function() {
       window.dataTable = $('#data_table').dataTable({
           "order": [[3, 'asc']],
           "columnDefs": [
-              { "targets": 0, "data": function(d) { return d.supplier; } },
-              { "targets": 1, "data": function(d) { return d.category; } },
-              { "targets": 2, "data": function(d) { return formatMoney(d.contract_value); } },
-              { "targets": 3, "data": function(d) { return formatDate(d.end_date); } },
-              { "targets": 4, "data": function(d) { return d.description; } }
+              { "targets": 0, "data": function(d) { return d.supplier; } ,"defaultContent": "Not available" },
+              { "targets": 1, "data": function(d) { return d.category; } ,"defaultContent": "Not available" },
+              { "targets": 2, "data": function(d) { return formatMoney(d.contract_value); }, "defaultContent": "Not available" },
+              { "targets": 3, "data": function(d) { return formatDate(d.end_date); }, "defaultContent": "Not available", }
           ],
           "searching": false,
           "lengthChange": false,
@@ -143,8 +141,8 @@ $(document).ready(function() {
 
       frequencyChart.focusCharts([]);
 
-    frequencyChart.filter([parseDate("2016-03-01"), parseDate("2016-06-01")]);
-    cfd.filter([parseDate("2016-03-01"), parseDate("2016-06-01")]);
+    frequencyChart.filter([parseDate("2015-06-01"), parseDate("2015-09-01")]);
+    cfd.filter([parseDate("2015-06-01"), parseDate("2015-09-01")]);
 
     dc.renderAll();
     RefreshTable();

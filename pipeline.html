@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="css/norfolk-timeline.css">
     <link rel="stylesheet" href="css/norfolk-pipeline-page.css">
     <link rel="stylesheet" href="css/dc.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/css/select2.min.css" rel="stylesheet" />
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">
     <!--
         <link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=fontawesome ">
         -->
@@ -94,7 +97,7 @@
                       <div class="pure-g-r pipeline-widget">
 
                         <div class="pure-u-22-24 clean_header_large">Showing contracts from <select class="widget-category-filter"><option selected="selected">all spending categories</option></select></div><!--
-						--><div class="pure-u-2-24 clean_header"><a class="pure-button button-secondary" href="https://dataclips.heroku.com/eaarihswareqaljzalbnhwvmibdc-norfolk_pipeline.csv">
+						--><div class="pure-u-2-24 clean_header"><a download class="pure-button button-secondary" href="https://dataclips.heroku.com/eaarihswareqaljzalbnhwvmibdc-norfolk_pipeline.csv">
                                 <i class="fa fa-download"></i>
                                 Data
                             </a></div>
@@ -153,14 +156,15 @@
         <!--
     -->
         <div class="pure-u-1-24">&nbsp;</div>
-        </section>
+
+    </div>
 
 
         <footer>
             <div class="pure-u-1-24">&nbsp;</div>
             <div class="pure-u-22-24 breadcrumb">
                 <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Published under Open Government License</a> &nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="" alt="link to github repo">An open source, open data project</a> funded by the <a href="http://www.local.gov.uk/local-transparency/-/journal_content/56/10180/3926733/ARTICLE">Local Authority Open Data Breakthrough Fund</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="">An open source, open data project</a> funded by the <a href="http://www.local.gov.uk/local-transparency/-/journal_content/56/10180/3926733/ARTICLE">Local Authority Open Data Breakthrough Fund</a> &nbsp;&nbsp;|&nbsp;&nbsp;
                 <a href="privacy.html">Privacy policy</a>
             </div>
             <div class="pure-u-1-24">&nbsp;</div>
@@ -169,18 +173,13 @@
 
 
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>
             window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')
         </script>
 
-        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/css/select2.min.css" rel="stylesheet" />
-        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
 
-
-        <!-- DataTables CSS -->
-        <link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">
         <!-- DataTables -->
         <script type="text/javascript" charset="utf8" src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
 
