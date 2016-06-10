@@ -40,7 +40,7 @@ function generatedata(year)
             data = dimple.filterData(data, 'YYYY', year);
             // console.log("data.length", data.length);
         }
-	console.log(data.length);
+	//console.log(data.length);
 	if(data.length > 0)
 	{	
 update1(data,year);
@@ -63,9 +63,9 @@ function setdata(val,id)
 //       $("#data_table").html("");
 	jQuery('#data_table').dataTable().fnDestroy();
 	jQuery(".t22table").html('<table id="data_table" class="display"><thead></thead><tbody></tbody></table></div>');
-		
+
      }
-	
+
 	$("#r1b1 .graph_wrapper").empty();
 	$(".pure-button").removeClass("pure-button-active");
 	$("#"+id).addClass("pure-button-active");
@@ -111,7 +111,7 @@ function setdata(val,id)
 	   return parseFloat(a.values) - parseFloat(b.values)
 	});
 	data2.reverse();
-	console.log(data2);
+	//console.log(data2);
 	
 	
 	
@@ -141,7 +141,7 @@ try {
 	
 	
 	
-	console.log(data3);
+	//console.log(data3);
 	//var top10 = data2.slice(0, 10); // slice the first 10
 	
 	    
@@ -184,13 +184,19 @@ try {
 	
 function generatedatatable(data)
 {
-	console.log(data);
+	//console.log(data);
    // create the table header
      d3.select("#data_table thead")
         .append('tr')
         .selectAll("th")
         .data(d3.keys(data[0]))
-        .enter().append("th").text(function(d){ console.log(d);if(d== "supplier_name") return "Supplier"; if(d == "total_spend") return "Amount"; if(d == "YYYY") return "Year" ; if(d == "org_type") return "Supplier Type" ; });
+		 .enter().append("th").text(function (d) {
+		 //console.log(d);
+		 if (d == "supplier_name") return "Supplier";
+		 if (d == "total_spend") return "Amount";
+		 if (d == "YYYY") return "Year";
+		 if (d == "org_type") return "Supplier Type";
+	 });
         
     // fill the table
     // create rows
@@ -219,10 +225,13 @@ function generatedatatable(data)
 			})
 			.attr("data-sort", function( d ){  return d; });
 
-        oTable =  $("#data_table").dataTable({
-	        "order": [[1, 'desc']]
- 		});	
-}	
+	if ( ! $.fn.DataTable.isDataTable( '#data_table' ) ) {
+
+		oTable =  $("#data_table").dataTable({
+			"order": [[1, 'desc']]
+		});
+	}
+}
 	
 $(document).ready( function () {
 	generatedata("");

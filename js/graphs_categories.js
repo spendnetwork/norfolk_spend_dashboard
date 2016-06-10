@@ -24,9 +24,10 @@ function generatedata(year) {
         data = [];
         for (var i = 0; i < jsondata['values'].length; i++) {
             var row = jsondata['values'][i];
-            if (row[0] && row[0].contains('Construction') && row[0].contains('Roads')) {
+            /*
+            if (row[0] && row[0].indexOf('Construction') >= 0 && row[0].indexOf('Roads')) {
                 console.log(row);
-            }
+            }*/
             data.push({
                 'category': row[0] || '(no data)',
                 'total_spend': row[1],
@@ -41,7 +42,7 @@ function generatedata(year) {
             data = dimple.filterData(data, 'YYYY', year);
             // console.log("data.length", data.length);
         }
-        console.log(data.length);
+        //console.log(data.length);
         if (data.length > 0) {
             update1(data, year);
             generatedatatable(data);
@@ -106,7 +107,7 @@ function update1(data, year) {
         return parseFloat(a.values) - parseFloat(b.values)
     });
     data2.reverse();
-    console.log(data2);
+    //console.log(data2);
 
 
     var top10 = [];
@@ -179,7 +180,7 @@ function generatedatatable(data) {
         .selectAll("th")
         .data(d3.keys(data[0]))
         .enter().append("th").text(function (d) {
-            console.log(d);
+            //console.log(d);
             if (d == "category") return "Category";
             if (d == "total_spend") return "Amount";
             if (d == "YYYY") return "Year";
