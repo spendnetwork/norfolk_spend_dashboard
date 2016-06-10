@@ -115,10 +115,10 @@ $(document).ready(function() {
       window.dataTable = $('#data_table').dataTable({
           "order": [[3, 'asc']],
           "columnDefs": [
-              { "targets": 0, "data": function(d) { return d.supplier; } },
-              { "targets": 1, "data": function(d) { return d.category; } },
-              { "targets": 2, "data": function(d) { return formatMoney(d.contract_value); } },
-              { "targets": 3, "data": function(d) { return formatDate(d.end_date); } }
+              { "targets": 0, "data": function(d) { return d.supplier; } ,"defaultContent": "Not available" },
+              { "targets": 1, "data": function(d) { return d.category; } ,"defaultContent": "Not available" },
+              { "targets": 2, "data": function(d) { return formatMoney(d.contract_value); }, "defaultContent": "Not available" },
+              { "targets": 3, "data": function(d) { return formatDate(d.end_date); }, "defaultContent": "Not available", }
           ],
           "searching": false,
           "lengthChange": false,
