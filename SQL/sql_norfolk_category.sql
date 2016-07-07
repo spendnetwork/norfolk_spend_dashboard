@@ -1,5 +1,5 @@
 select
-	trans_clean.trans_type as "category"
+	upper(trans_clean.buyer_category_text1) as "category"
 ,	sum(trans_clean.amount_calculated) as total_spend
 ,	EXTRACT(YEAR FROM date_calculated) as "YYYY"
 from
