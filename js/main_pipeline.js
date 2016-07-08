@@ -143,8 +143,8 @@ $(document).ready(function() {
 
       frequencyChart.focusCharts([]);
 
-    frequencyChart.filter([parseDate("2015-06-01"), parseDate("2015-09-01")]);
-    cfd.filter([parseDate("2015-06-01"), parseDate("2015-09-01")]);
+    frequencyChart.filter([parseDate("2016-06-01"), parseDate("2016-09-01")]);
+    cfd.filter([parseDate("2016-06-01"), parseDate("2016-09-01")]);
 
     dc.renderAll();
     RefreshTable();
