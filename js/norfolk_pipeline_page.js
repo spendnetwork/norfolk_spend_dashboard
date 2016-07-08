@@ -4,7 +4,7 @@ $(document).ready(function() {
     window.detailChart = dc.barChart("#dc-detail-chart");
     window.frequencyChart = dc.barChart("#dc-frequency-chart");
 
-    var cfc, cfcg;
+    var cfc, cfcg, dYears = [];
 
     d3.json('https://dataclips.heroku.com/eaarihswareqaljzalbnhwvmibdc-norfolk_pipeline.json', function(jsondata) {
 
@@ -24,7 +24,22 @@ $(document).ready(function() {
                 'description': row[4]
             };
             payload.push(d);
+
+            if(d.contract_value > 0) {
+                dYears.push(row[2].replace("-","").replace("-","").toString());
+            }
+
         }
+
+        var lowest_date = Math.min.apply(Math,dYears).toString();
+        var lowest_date_formatted = lowest_date.substring(0,4)+'-'+lowest_date.substr(4,2)+'-'+lowest_date.substr(6,2);
+        var highest_year = parseInt(lowest_date.substring(0,4))+5;
+        var highest_date_formatted = highest_year+'-'+lowest_date.substr(4,2)+'-'+lowest_date.substr(6,2);
+
+        var date_selection_end_year = parseInt(lowest_date.substring(0,4))+1;
+        var date_selection_start_formatted = lowest_date_formatted;
+        var date_selection_end_formatted = date_selection_end_year+'-'+lowest_date.substr(4,2)+'-'+lowest_date.substr(6,2);
+
 
         // store json results for later reference
         NFPipeline.payload = payload;
@@ -58,7 +73,7 @@ $(document).ready(function() {
         }
 
         window.dataTable = $('#data_table').dataTable({
-            "order": [[3, 'asc']],
+            "order": [[4, 'asc']],
             "columnDefs": [
                 { "targets": 0, "data": function(d) { return d.supplier; } },
                 { "targets": 1, "data": function(d) { return d.category; } },
@@ -82,9 +97,9 @@ $(document).ready(function() {
             chartI.on("filtered", RefreshTable);
         }
 
-        var earliest = parseDate("2015-06-01")
+        var earliest = parseDate(lowest_date_formatted)
         // , latest = cfd.top(1)[0].end_date]
-            , latest = parseDate("2020-06-01");
+            , latest = parseDate(highest_date_formatted);
 
         frequencyChart.dimension(cfd)
             .group(cfdg)
@@ -215,7 +230,7 @@ $(document).ready(function() {
         $('.widget-category-filter').select2();
 
         // pre-set the brush selection between these two dates
-        frequencyChart.filter([parseDate("2015-06-01"), parseDate("2016-02-01")])
+        frequencyChart.filter([parseDate(date_selection_start_formatted), parseDate(date_selection_end_formatted)])
 
         // add listener for updating the categories
         $('.pipeline-widget')
