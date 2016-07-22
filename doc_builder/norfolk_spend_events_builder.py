@@ -12,7 +12,7 @@ dummy_data = 'x'
 footer_count = 0
 today = dt.date.today().strftime("%Y%m%d")
 spend_events_dat = 'spend_events_' + today + '.dat'
-spend_events_txt = 'spend_events_X_' + today + '.txt'
+spend_events_txt = 'spend_events_' + today + '_X.txt'
 spend_events_dat_target = open(spend_events_dat, 'w')  ## a will append, w will over-write
 spend_events_txt_target = open(spend_events_txt, 'w')
 
@@ -49,7 +49,7 @@ try:
     cur = conn.cursor()
 
     cur.execute(
-        "select buyers_ref_for_supplier, supplier_industry_num from trans_clean where entity_id = 'E2620_NCC_gov' and supplier_industry_num is not null group by buyers_ref_for_supplier, supplier_industry_num;")  # get the ids from trans_clean
+        "select buyers_ref_for_supplier, supplier_industry_num from trans_clean where entity_id = 'E2620_NCC_gov' and supplier_industry_num is not null and buyers_ref_for_supplier is not null group by buyers_ref_for_supplier, supplier_industry_num;")  # get the ids from trans_clean
     sup_ids = cur.fetchall()
 
 
@@ -83,7 +83,11 @@ try:
                     fi_id = json_field(filing, '', 'filing', 'id')
                     fi_uid = json_field(filing, '', 'filing', 'uid')
                     fi_date = json_field(filing, '', 'filing', 'date')
-                    fi_title = json_field(filing, '', 'filing', 'title').encode('ascii', 'ignore').decode('ascii')
+                    if json_field(filing, '', 'filing', 'title') == True:
+                        continue
+                    else:
+                        fi_title = json_field(filing, '', 'filing', 'title').encode('ascii', 'ignore').decode('ascii')
+
                     fi_descr = json_field(filing, '', 'filing', 'description').encode('ascii', 'ignore').decode('ascii')
                     fi_url = json_field(filing, '', 'filing', 'url')
                     fi_type = json_field(filing, '', 'filing', 'filing_type_name').encode('ascii', 'ignore').decode('ascii')
@@ -94,8 +98,7 @@ try:
                     dat_line = "%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s\n" % (H, vn_id, sn_id, fi_id[0:100], fi_uid, fi_date, fi_title[0:100], fi_descr[0:200], fi_url, fi_type[0:100], fi_oc_url, fi_code, dummy_data or '')
                     print dat_line
                     spend_events_dat_target.write(dat_line)
-                    txt_line = dat_line.replace('|',',')
-                    spend_events_txt_target.write(txt_line)
+                    spend_events_txt_target.write(dat_line)
 
                     footer_count += 1
 

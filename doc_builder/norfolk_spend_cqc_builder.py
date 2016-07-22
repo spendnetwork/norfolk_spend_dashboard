@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 import urlparse
 import datetime as dt
 import json
@@ -5,6 +8,7 @@ import os
 import psycopg2
 import requests
 import sys
+from string import printable
 
 urlparse.uses_netloc.append("postgres")
 url = urlparse.urlparse(os.environ['DATABASE_URL'])
@@ -13,7 +17,7 @@ dummy_data = 'x'
 footer_count = 0
 today = dt.date.today().strftime("%Y%m%d")
 spend_cqc_dat = 'spend_cqc_' + today + '.dat'
-spend_cqc_txt = 'spend_cqc_X_' + today + '.txt'
+spend_cqc_txt = 'spend_cqc_' + today + '_X.txt'
 spend_cqc_dat_target = open(spend_cqc_dat, 'w')  ## a will append, w will over-write
 spend_cqc_txt_target = open(spend_cqc_txt, 'w')
 
@@ -56,6 +60,13 @@ conn = psycopg2.connect(
     host=url.hostname,
     port=url.port
 )
+
+
+def strip_non_ascii(string):
+    ''' Returns the string without non ASCII characters'''
+    stripped = (c for c in string if 0 < ord(c) < 127)
+    return ''.join(stripped)
+
 
 def json_field(jsonobj, default, *names):
     """
@@ -103,7 +114,6 @@ try:
                     prov_json = json.loads(prov_r.text)
                     provider_name = json_field(prov_json, '', 'name')
                     print 'provider_name: %s' % provider_name
-
 
                 name = json_field(json_data, '', 'name')
                 aka = json_field(json_data, '', 'alsoKnownAs')
@@ -218,11 +228,13 @@ try:
                 print "region: %s" % region
                 print "overall: %s" % overall_rating
                 print "dereg %s" % dereg
-                spend_cqc_dat_target.write(dat_line)
-                txt_line = dat_line.replace('|',',')
-                spend_cqc_txt_target.write(txt_line)
 
-                footer_count =+ 1
+                dat_line = strip_non_ascii(dat_line)
+                spend_cqc_dat_target.write(dat_line)
+                spend_cqc_txt_target.write(dat_line)
+
+                footer_count += 1
+                print 'footer_count: %s' %footer_count
 
 
     #write footers

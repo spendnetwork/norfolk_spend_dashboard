@@ -15,7 +15,7 @@ today = dt.date.today().strftime("%Y%m%d")
 ch_num_invalid = 0
 
 spend_house_dat = 'spend_house_' + today + '.dat'
-spend_house_txt = 'spend_house_X_' + today + '.txt'
+spend_house_txt = 'spend_house_' + today + '_X.txt'
 spend_house_dat_target = open(spend_house_dat, 'w')  ## a will append, w will over-write
 spend_house_txt_target = open(spend_house_txt, 'w')
 
@@ -30,6 +30,13 @@ conn = psycopg2.connect(
     host=url.hostname,
     port=url.port
 )
+
+
+def strip_non_ascii(string):
+    ''' Returns the string without non ASCII characters'''
+    stripped = (c for c in string if 0 < ord(c) < 127)
+    return ''.join(stripped)
+
 
 def json_field(jsonobj, default, *names):
     try:
@@ -51,7 +58,7 @@ try:
     cur = conn.cursor()
 
     cur.execute(
-        "select buyers_ref_for_supplier, supplier_industry_num from trans_clean where entity_id = 'E2620_NCC_gov' and supplier_industry_num is not null and buyers_ref_for_supplier is not null and lower(buyers_ref_for_supplier) not like '%redact%' and supplier_source_string not like '%redact%' and buyers_ref_for_trans not null group by buyers_ref_for_supplier, supplier_industry_num")  # get the ids from trans_clean
+        "select buyers_ref_for_supplier, supplier_industry_num from trans_clean where entity_id = 'E2620_NCC_gov' and supplier_industry_num is not null and buyers_ref_for_supplier is not null and lower(buyers_ref_for_supplier) not like '%redact%' and supplier_source_string not like '%redact%' and buyers_ref_for_trans is not null group by buyers_ref_for_supplier, supplier_industry_num")  # get the ids from trans_clean
     sup_ids = cur.fetchall()
 
 
@@ -90,11 +97,12 @@ try:
 
                     dat_line = "%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s\n" % \
                                (H, vn_id, sn_id[0:100], supplier_name[0:100], addr_line1, addr_line2, addr_line3[0:100], addr_post_town[0:200], addr_postcode, supplier_legal_form[0:100], open_date, close_date, accounts_category, accounts_next_due_date, dummy_data or '')
-                    print dat_line
+
+                    dat_line = strip_non_ascii(dat_line)
                     spend_house_dat_target.write(dat_line)
-                    txt_line = dat_line.replace('|',',')
-                    spend_house_txt_target.write(txt_line)
+                    spend_house_txt_target.write(dat_line)
                     footer_count += 1
+
                 else:
                     ch_num_invalid += 1
                     continue
@@ -107,6 +115,7 @@ try:
     spend_house_txt_target.close()
     print 'ch_num_invalid: %s' %ch_num_invalid
     print 'footer_count: %s' %footer_count
+
 
 except psycopg2.DatabaseError, e:
     print 'Error %s' % e
