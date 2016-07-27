@@ -513,36 +513,80 @@ function update_r4b1(year) {
 
     d3.json("https://dataclips.heroku.com/eylcztpirojwkpimoerwdantthcr-norfolk_supplier_top10_small.json", function (jsondata) {
 
-        var data = [];
+
+        var csv = [];
         for (var i = 0; i < jsondata['values'].length; i++) {
             var row = jsondata['values'][i];
-            data.push({
+            csv.push({
                 'supplier_name': row[0],
                 'sum': row[1],
                 'YYYY': row[2]
             });
         }
 
-        // console.log(data);
         if (typeof year !== "undefined") {
-            // console.log("filtering buildTopTenSupplierChart by ", year, '...');
-            data = dimple.filterData(data, 'YYYY', year);
-            // console.log("filtered data", data);
+            // console.log("filtering regionalSpendRing by ", year, '...');
+            data = dimple.filterData(csv, 'YYYY', year);
+
+            var data2 = d3.nest()
+                .key(function (d) {
+                    return d.supplier_name;
+                })
+                .rollup(function (d) {
+                    var arr = [];
+                    arr[0] = d3.sum(d, function (g) {
+                        return g.sum;
+                    });
+                    arr[1] = d[0].YYYY;
+                    return arr;
+                }).entries(data);
+
+
+        }
+        else {
+            var data2 = d3.nest()
+                .key(function (d) {
+                    return d.supplier_name;
+                })
+                .rollup(function (d) {
+                    var arr = [];
+                    arr[0] = d3.sum(d, function (g) {
+                        return g.sum;
+                    });
+                    arr[1] = d[0].YYYY;
+                    return arr;
+                }).entries(csv);
+
+
         }
 
-        ds = data.sort(function (a, b) {
-            return parseFloat(b.sum) - parseFloat(a.sum);
+
+        data2.sort(function (a, b) {
+            return parseFloat(a.values) - parseFloat(b.values)
+        });
+        data2.reverse();
+
+        var top10 = [];
+        var jj = 0;
+        var top2 = [];
+        data2.forEach(function (d) {
+            jj++;
+            if (jj <= 10) {
+                top10.push(new Object({ supplier_name: d.key, sum: d.values[0], YYYY: d.values[1]}));
+            }
+            if (top2.length < 2 && d.key != '(no data)') {
+                top2.push(new Object({supplier_name: d.key, sum: d.values[0]}));
+            }
         });
 
-        dt = ds.slice(0, 10);
-
-        var myChart = new dimple.chart(svg4_1, dt);
+        var myChart = new dimple.chart(svg4_1, top10);
         myChart.setBounds(4, 20, "88%", "80%");
         myChart.addMeasureAxis("x", "sum");
         var y = myChart.addCategoryAxis("y", "supplier_name");
         y.hidden = true;
+        y.addOrderRule("sum", false);
         // y.addOrderRule("supplier_name");
-        supplierChartSeries = myChart.addSeries(null, dimple.plot.bar);
+        var supplierChartSeries = myChart.addSeries(null, dimple.plot.bar);
         myChart.defaultColors = [
             new dimple.color("#81C936", "#81C936", 1), // Norfolk green
         ];
@@ -571,10 +615,10 @@ function update_r4b2(year) {
 
     d3.json("https://dataclips.heroku.com/xfgsnoumtajyxowzymyxhfuoaeza-norfolk_supplier_top10_medlarge.json", function (jsondata) {
 
-        var data = [];
+        var csv = [];
         for (var i = 0; i < jsondata['values'].length; i++) {
             var row = jsondata['values'][i];
-            data.push({
+            csv.push({
                 'supplier_name': row[0],
                 'sum': row[1],
                 'YYYY': row[2]
@@ -582,17 +626,61 @@ function update_r4b2(year) {
         }
 
         if (typeof year !== "undefined") {
-            // console.log("filtering buildTopTenBuyerChart by ", year, '...');
-            data = dimple.filterData(data, 'YYYY', year);
+            // console.log("filtering regionalSpendRing by ", year, '...');
+            data = dimple.filterData(csv, 'YYYY', year);
+
+            var data2 = d3.nest()
+                .key(function (d) {
+                    return d.supplier_name;
+                })
+                .rollup(function (d) {
+                    var arr = [];
+                    arr[0] = d3.sum(d, function (g) {
+                        return g.sum;
+                    });
+                    arr[1] = d[0].YYYY;
+                    return arr;
+                }).entries(data);
+
+
+        }
+        else {
+            var data2 = d3.nest()
+                .key(function (d) {
+                    return d.supplier_name;
+                })
+                .rollup(function (d) {
+                    var arr = [];
+                    arr[0] = d3.sum(d, function (g) {
+                        return g.sum;
+                    });
+                    arr[1] = d[0].YYYY;
+                    return arr;
+                }).entries(csv);
+
+
         }
 
-        ds = data.sort(function (a, b) {
-            return parseFloat(b.sum) - parseFloat(a.sum);
+
+        data2.sort(function (a, b) {
+            return parseFloat(a.values) - parseFloat(b.values)
+        });
+        data2.reverse();
+
+        var top10 = [];
+        var jj = 0;
+        var top2 = [];
+        data2.forEach(function (d) {
+            jj++;
+            if (jj <= 10) {
+                top10.push(new Object({ supplier_name: d.key, sum: d.values[0], YYYY: d.values[1]}));
+            }
+            if (top2.length < 2 && d.key != '(no data)') {
+                top2.push(new Object({supplier_name: d.key, sum: d.values[0]}));
+            }
         });
 
-        dt = ds.slice(0, 10);
-
-        var myChart = new dimple.chart(svg4_2, dt);
+        var myChart = new dimple.chart(svg4_2, top10);
         myChart.setBounds(4, 20, "88%", "80%");
         myChart.addMeasureAxis("x", "sum");
         var y = myChart.addCategoryAxis("y", "supplier_name");
