@@ -32,14 +32,13 @@ $(document).ready(function() {
         }
 
         var lowest_date = Math.min.apply(Math,dYears).toString();
-        var lowest_date_formatted = lowest_date.substring(0,4)+'-'+lowest_date.substr(4,2)+'-'+lowest_date.substr(6,2);
+        var lowest_date_formatted = lowest_date.substring(0,4)+'-'+lowest_date.substr(4,2)+'-01';
         var highest_year = parseInt(lowest_date.substring(0,4))+5;
         var highest_date_formatted = highest_year+'-'+lowest_date.substr(4,2)+'-'+lowest_date.substr(6,2);
 
         var date_selection_end_year = parseInt(lowest_date.substring(0,4))+1;
         var date_selection_start_formatted = lowest_date_formatted;
-        var date_selection_end_formatted = date_selection_end_year+'-'+lowest_date.substr(4,2)+'-'+lowest_date.substr(6,2);
-
+        var date_selection_end_formatted = date_selection_end_year+'-'+lowest_date.substr(4,2)+'-01';
 
         // store json results for later reference
         NFPipeline.payload = payload;
