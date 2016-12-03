@@ -14,12 +14,12 @@ footer_count = 0
 today = dt.date.today().strftime("%Y%m%d")
 ch_num_invalid = 0
 
-spend_house_dat = 'spend_house_' + today + '.dat'
-spend_house_txt = 'spend_house_' + today + '_X.txt'
+spend_house_dat = 'spend_housedata_' + today + '.dat'
+spend_house_txt = 'spend_housedata_' + today + '_X.txt'
 spend_house_dat_target = open(spend_house_dat, 'w')  ## a will append, w will over-write
 spend_house_txt_target = open(spend_house_txt, 'w')
 
-header = 'H|vendor_id|supplier_name|supplier_id|addr_line1|addr_line2|addr_line3|addr_post_town|addr_postcode|supplier_legal_form|open_date|close_date|accounts_category|accounts_next_due_date|dummy data\n'
+header = 'H|vendor_id|supplier_name|supplier_id|addr_line1|addr_line2|addr_line3|addr_post_town|addr_postcode|supplier_legal_form|close_date|open_date|accounts_category|accounts_next_due_date|dummy data\n'
 spend_house_dat_target.write(header)
 spend_house_txt_target.write(header)
 
@@ -78,9 +78,12 @@ try:
         ch_url = 'http://data.companieshouse.gov.uk/doc/company/' + sn_id + '.json'
         ch_r = requests.get(ch_url)
         if ch_r.status_code == 404:
+            print('error: %s, %s' % (ch_r.status_code, ch_url))
             pass
         else:
             if ch_r.status_code == 200:
+                print('success: %s, %s' % (ch_r.status_code, ch_url))
+
                 if is_json(ch_r):
                     json_data = json.loads(ch_r.text)
                     supplier_name = json_field(json_data, '', 'primaryTopic', 'CompanyName')
@@ -90,13 +93,13 @@ try:
                     addr_line3 = json_field(json_data, '', 'primaryTopic', 'RegAddress','AddressLine3')
                     addr_post_town = json_field(json_data, '', 'primaryTopic', 'RegAddress','PostTown')
                     addr_postcode = json_field(json_data, '', 'primaryTopic', 'RegAddress','Postcode')
-                    open_date = json_field(json_data, '', 'primaryTopic', 'IncorporationDate')
                     close_date = json_field(json_data, '', 'primaryTopic', 'DissolutionDate')
+                    open_date = json_field(json_data, '', 'primaryTopic', 'IncorporationDate')
                     accounts_category = json_field(json_data, '', 'primaryTopic', 'Accounts','AccountCategory')
                     accounts_next_due_date = json_field(json_data, '', 'primaryTopic', 'Accounts','NextDueDate')
 
                     dat_line = "%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s\n" % \
-                               (H, vn_id, sn_id[0:100], supplier_name[0:100], addr_line1, addr_line2, addr_line3[0:100], addr_post_town[0:200], addr_postcode, supplier_legal_form[0:100], open_date, close_date, accounts_category, accounts_next_due_date, dummy_data or '')
+                               (H, vn_id, supplier_name[0:100], sn_id[0:100], addr_line1, addr_line2, addr_line3[0:100], addr_post_town[0:200], addr_postcode, supplier_legal_form[0:100], close_date, open_date, accounts_category, accounts_next_due_date, dummy_data or '')
 
                     dat_line = strip_non_ascii(dat_line)
                     spend_house_dat_target.write(dat_line)
@@ -109,7 +112,7 @@ try:
 
     #write footers
     spend_house_dat_target.write('F|%s' % footer_count)
-    spend_house_txt_target.write('F,%s' % footer_count)
+    spend_house_txt_target.write('F|%s' % footer_count)
 
     spend_house_dat_target.close()
     spend_house_txt_target.close()

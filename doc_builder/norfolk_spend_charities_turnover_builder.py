@@ -12,7 +12,7 @@ dummy_data = 'x'
 footer_count = 0
 today = dt.date.today().strftime("%Y%m%d")
 spend_charities_dat = 'spend_charities_turnover_' + today + '.dat'
-spend_charities_txt = 'spend_charities_turnover_X_' + today + '.txt'
+spend_charities_txt = 'spend_charities_turnover_' + today + '_X.txt'
 spend_charities_dat_target = open(spend_charities_dat, 'w')  ## a will append, w will over-write
 spend_charities_txt_target = open(spend_charities_txt, 'w')
 ch_num_invalid = 0
@@ -83,8 +83,7 @@ try:
                         dat_line = "%s|%s|%s|%s|%s|%s|%s\n" % (H, vn_id, sn_id, fi_accounts_date, fi_income, fi_spending, dummy_data or '')
                         print dat_line
                         spend_charities_dat_target.write(dat_line)
-                        txt_line = dat_line.replace('|',',')
-                        spend_charities_txt_target.write(txt_line)
+                        spend_charities_txt_target.write(dat_line)
 
                         footer_count += 1
                 else:
@@ -93,7 +92,7 @@ try:
 
     #write footers
     spend_charities_dat_target.write('F|%s' % footer_count)
-    spend_charities_txt_target.write('F,%s' % footer_count)
+    spend_charities_txt_target.write('F|%s' % footer_count)
     print 'ch_num_invalid: %s' %ch_num_invalid
     print 'footer_count: %s' %footer_count
 

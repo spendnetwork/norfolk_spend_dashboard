@@ -104,7 +104,7 @@ try:
 
     #write footers
     spend_events_dat_target.write('F|%s' % footer_count)
-    spend_events_txt_target.write('F,%s' % footer_count)
+    spend_events_txt_target.write('F|%s' % footer_count)
 
     spend_events_dat_target.close()
     spend_events_txt_target.close()

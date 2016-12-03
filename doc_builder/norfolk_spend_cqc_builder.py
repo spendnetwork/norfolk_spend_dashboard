@@ -84,24 +84,29 @@ try:
     cur = conn.cursor()
 
     cur.execute(
-        "select buyers_ref_for_supplier, cqc_location_id from trans_clean where entity_id = 'E2620_NCC_gov' and cqc_location_id is not null and supplier_id not like '%_xtr' and supplier_id not like '%red%' group by buyers_ref_for_supplier, cqc_location_id")  # get the ids from trans_clean
+        "select buyers_ref_for_supplier, cqc_location_id from trans_clean where entity_id = 'E2620_NCC_gov' and cqc_location_id is not null group by buyers_ref_for_supplier, cqc_location_id")  # get the ids from trans_clean
     sup_ids = cur.fetchall()
-    print sup_ids
+    # print sup_ids
 
     for sup in sup_ids:
-        vn_id = sup[0]
+        vn_id = sup[0] # get the Norfolk vendor number
 
         if vn_id:
             vn_id
         else:
-            vn_id = ''
+            vn_id = '' # set it to empty if there is no vendor number
 
         sn_id = sup[1]
+
+        # make sure sn var is right format
         if sn_id.startswith('1-'):
             cqc_url = 'https://api.cqc.org.uk/public/v1/locations/' + sn_id
             cqc_r = requests.get(cqc_url)
 
-            if cqc_r.status_code == 200:
+            if cqc_r.status_code != 200:
+                print('error: %s, url: %s' % (cqc_r.status_code, cqc_url))
+            else:
+                print('success: %s, url: %s' % (cqc_r.status_code, cqc_url))
                 json_data = json.loads(cqc_r.text)
                 # print json_data
 
@@ -134,6 +139,7 @@ try:
                 ind_ratings = json_field(json_data,'','currentRatings', 'overall', 'keyQuestionRatings')
                 beds = json_field(json_data, '', 'numberOfBeds')
                 dereg = json_field(json_data, '', 'deregistrationDate')
+                dummy = 'x'
 
                 safe_rating = ''
                 caring_rating = ''
@@ -196,6 +202,7 @@ try:
                            "%s|" \
                            "%s|" \
                            "%s|" \
+                           "%s|" \
                            "%s\n" % \
                            (H,
                             sn_id,
@@ -223,7 +230,8 @@ try:
                             responsive_rating,
                             well_led_rating,
                             beds,
-                            dereg
+                            dereg,
+                            dummy
                             or '')
                 print "region: %s" % region
                 print "overall: %s" % overall_rating
@@ -236,10 +244,9 @@ try:
                 footer_count += 1
                 print 'footer_count: %s' %footer_count
 
-
     #write footers
     spend_cqc_dat_target.write('F|%s' % footer_count)
-    spend_cqc_txt_target.write('F,%s' % footer_count)
+    spend_cqc_txt_target.write('F|%s' % footer_count)
 
     spend_cqc_dat_target.close()
     spend_cqc_txt_target.close()
@@ -252,3 +259,4 @@ except psycopg2.DatabaseError, e:
 finally:
     if conn:
         conn.close()
+
